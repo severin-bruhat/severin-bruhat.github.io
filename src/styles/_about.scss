@@ -10,9 +10,6 @@
 .tech {
   margin: 10px;
   width: 100%;
-  @media only screen and (min-width: $cut) {
-    width: 50%;
-  }
 }
 
 .user {
@@ -22,6 +19,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
+  padding-top: 50px;
   p {
     font-size: 16px;
   }
@@ -31,7 +29,33 @@
   }
 }
 
-.user-details {
+.user-details, .quote {
   text-align: center;
   margin: 5px auto;
+}
+
+
+.quote {
+  p {
+    line-height: 1;
+  }
+}
+
+q {
+  quotes: "“" "”" "‘" "’";
+  font-style: italic;
+}
+
+q:before {
+  content: open-quote;
+}
+
+q:after {
+  content: close-quote;
+}
+
+q:before,
+q:after {
+  color: #b54d4d;
+  font-size: 1.6em;
 }
