@@ -1,0 +1,183 @@
+---
+layout: post
+status: publish
+published: true
+title: Wordpress comme CMS pour un site  robuste ?
+author:
+  display_name: Séverin Bruhat
+  login: admin_sbr
+  email: sbruhat@gmail.com
+  url: http://severin-bruhat.com
+author_login: admin_sbr
+author_email: sbruhat@gmail.com
+author_url: http://severin-bruhat.com
+wordpress_id: 606
+wordpress_url: http://severin-bruhat.local/?p=606
+date: '2014-12-29 23:15:24 +0000'
+date_gmt: '2014-12-29 22:15:24 +0000'
+categories:
+- Blog
+tags:
+- performances
+- wordpress
+comments: []
+---
+<p>
+	Peut-on utiliser <a href="https://wordpress.org/" target="_blank">Wordpress</a> pour mettre en place un site avec des fonctionnalit&eacute;s avanc&eacute;es et un fort traffic ? Soyons honn&ecirc;te, Wordpress est un CMS tr&egrave;s r&eacute;pandu et a fait ses preuves dans le domaine des blogs, mais qui n&#39;a jamais dout&eacute; de ses capacit&eacute;s en termes de performance et de scalabilit&eacute; ?</p>
+<p>
+	En tant que d&eacute;veloppeur, puis expert technique et maintenant directeur technique, j&#39;ai eu l&#39;occasion &agrave; plusieurs reprises d&#39;entendre des discours du type "tu plaisantes ? on ne va pas utiliser Wordpress, &ccedil;a ne tiendra jamais la charge !" ou bien encore "Wordpress c&#39;est bien pour faire un blog c&#39;est tout", "Wordpress c&#39;est sale !", blablabla...</p>
+<p>
+	Il y a les fervents d&eacute;fenseurs de Wordpress, ceux qui ne jurent que par ce CMS et qui se sp&eacute;cialisent, il y a ceux qui ne veulent pas en entendre parler, et puis ceux qui, comme moi, lui donne une chance (croyez moi, Wordpress n&#39;en a pas besoin, il a d&eacute;j&agrave; largement fait ses preuves&nbsp;comme nous le verrons plus tard). Bref, dans ce post je vais vous expliquer&nbsp;pourquoi Wordpress fait parti des solutions &agrave; envisager pour mettre en place un gros projet au m&ecirc;me titre que Joomla, Drupal ou encore Typo3 (et oui &ccedil;a existe encore).</p>
+<h2>
+	Part de march&eacute;<br />
+</h2>
+<p>
+	<a href="http://severin-bruhat.local/wp-content/uploads/2014/12/Capture-d&rsquo;écran-2014-12-29-à-18.10.48.png"><img alt="W3Techs" class="aligncenter size-full wp-image-653" height="209" src="http://severin-bruhat.local/wp-content/uploads/2014/12/Capture-d&rsquo;écran-2014-12-29-à-18.10.48.png" width="560" /></a></p>
+<p>
+	Worpress est utilis&eacute; par plus de 23% des sites web, il repr&eacute;sente 61% de la part de march&eacute; des CMS. Ces chiffres sont tr&egrave;s &eacute;vocateurs et indiquent l&#39;importance de ce CMS.</p>
+<p>
+	Une petite recherche dans <a href="http://www.google.fr/trends/?hl=fr" target="_blank">Google Trends </a>(de janvier 2013 &agrave; d&eacute;cembre 2014, bas&eacute;e sur les recherches de mots cl&eacute;s) permet de sortir les graphiques suivants :</p>
+<table border="1" cellpadding="1" cellspacing="1">
+<tbody>
+<tr>
+<td>
+				<a href="http://severin-bruhat.local/wp-content/uploads/2014/12/Capture-d&rsquo;écran-2014-12-29-à-18.21.26.png" rel="" style="" target="" title=""><img alt="Google Trends France" class="aligncenter size-full wp-image-659" height="213" src="http://severin-bruhat.local/wp-content/uploads/2014/12/Capture-d&rsquo;écran-2014-12-29-à-18.21.26.png" style="" title="" width="393" /></a>
+			</td>
+<td>
+				<a href="http://severin-bruhat.local/wp-content/uploads/2014/12/Capture-d&rsquo;écran-2014-12-29-à-18.20.50.png" rel="" style="" target="" title=""><img alt="Google Trends monde" class="aligncenter size-full wp-image-658" height="213" src="http://severin-bruhat.local/wp-content/uploads/2014/12/Capture-d&rsquo;écran-2014-12-29-à-18.20.50.png" style="" title="" width="393" /></a>
+			</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+				France
+			</td>
+<td style="text-align: center;">
+				Monde
+			</td>
+</tr>
+</tbody>
+</table>
+<p>
+	Ces graphiques illustrent tr&egrave;s bien l&#39;int&eacute;r&ecirc;t port&eacute; &agrave; Wordpress (courbe bleue). Les chiffres parlent d&#39;eux m&ecirc;mes : Wordpress est le CMS le plus r&eacute;pandu au monde.</p>
+<h2>
+	Perfomance<br />
+</h2>
+<h3>
+	Gestion du cache<br />
+</h3>
+<p>
+	Wordpress dispose de deux syst&egrave;mes de cache.</p>
+<p>
+	Tout d&#39;abord : le cache persistant gr&acirc;ce &agrave; l&#39;<a href="http://codex.wordpress.org/Transients_API" target="_blank">API Transient</a> qui permet de mettre des donn&eacute;es en cache au niveau de la base de donn&eacute;es ou au niveau de <a href="http://memcached.org/" target="_blank">memcached</a> par exemple. Le fonctionnement est le suivant: la fonction set_transient(...) permet de m&eacute;moriser les donn&eacute;es sous forme de tableau ou d&#39;objet, la fonction get_transient(...) permet de r&eacute;cup&eacute;rer la valeur si elle est pr&eacute;sente et non expir&eacute;e. La m&eacute;thode delete_transient permet, vous l&#39;aurez devin&eacute;, de supprimer une valeur du cache. get_site_transient(), s<span style="line-height: 20.7999992370605px;">et_site_transient() et delete_site_transient() permettent de g&eacute;rer le cache dans le cas du multisite.&nbsp;Vous trouverez une tr&egrave;s bonne pr&eacute;sentation de l&#39;API ici :&nbsp;</span><a href="http://scotch.io/tutorials/a-guide-to-transients-in-wordpress" target="_blank">http://scotch.io/tutorials/a-guide-to-transients-in-wordpress.</a></p>
+<p>
+	Ensuite : le cache non persistant. Ce type de cahe est valable g&eacute;n&eacute;ralement au niveau du cycle de vie de la page et est tr&egrave;s utilis&eacute; pour les requ&ecirc;tes par exemple. La m&eacute;thode wp_cache_get(...) permet de v&eacute;rifier la pr&eacute;sence d&#39;un &eacute;l&eacute;ment dans le cache, la m&eacute;thode wp_cache_set(...) ajoute un &eacute;l&eacute;ment dans le cache, la m&eacute;thode wp_cache_add(...), quant &agrave; elle ajoute un &eacute;l&eacute;ment dans le cache uniquement s&#39;il n&#39;y est pas d&eacute;j&agrave; (contrairement &agrave; wp_cache_set qui l&#39;ajoute syst&eacute;matiquement).</p>
+<p>
+	Vous trouverez une pr&eacute;sentation des caches tr&egrave;s int&eacute;ressante ici : <a href="http://www.smashingmagazine.com/2012/06/26/diy-caching-methods-wordpress/" target="_blank">http://www.smashingmagazine.com/2012/06/26/diy-caching-methods-wordpress/</a>.</p>
+<h3>
+	Plugins<br />
+</h3>
+<p>
+	Il exisiste plusieurs module de gestion de cache, voici les principaux:</p>
+<ul>
+<li>
+		<a href="https://wordpress.org/plugins/wp-super-cache/" target="_blank">WP Super Cache</a>
+	</li>
+<li>
+		<a href="https://wordpress.org/plugins/w3-total-cache/" target="_blank">W3 Total Cache</a>
+	</li>
+<li>
+		<a href="http://wp-rocket.me/fr/" target="_blank">WP Rocket</a>
+	</li>
+</ul>
+<p>
+	Ces plugins sont administrables en backoffice et modifient g&eacute;n&eacute;ralement les fichiers Nginx, Apache, Htaccess afin d&#39;optimiser les configurations serveurs.</p>
+<h3>
+	Configuration serveur<br />
+</h3>
+<p>
+	La performance ne d&eacute;pend pas uniquement du CMS ou du Framework, il est possible d&#39;intervenir&nbsp;&agrave; diff&eacute;rents niveaux :</p>
+<ul>
+<li>
+		load balancing pour la r&eacute;partition de la charge
+	</li>
+<li>
+		cache des ressources statiques (<a href="https://www.varnish-cache.org/" target="_blank">Varnish</a>, <a href="http://nginx.com/resources/admin-guide/caching/" target="_blank">Nginx</a>, <a href="http://httpd.apache.org/docs/2.2/fr/mod/mod_cache.html" target="_blank">Apache mod_cache</a> etc...)
+	</li>
+<li>
+		mise en cache dans la RAM (<a href="http://memcached.org/" target="_blank">Redis</a>, <a href="http://redis.io/" target="_blank">Memcached</a>)
+	</li>
+<li>
+		optimisation des ressources : RAM, SSD, CPU, Bande passante
+	</li>
+</ul>
+<h3>
+	Bonnes pratiques<br />
+</h3>
+<p>
+	Installer Wordpress ou un autre CMS ne garantit&nbsp;pas un temps de r&eacute;ponse id&eacute;al, un poids de page minimum, un nombre de requ&ecirc;tes optimum... C&#39;est la qualit&eacute; du code qui permet de tendre vers une performance optimale. Voici quelques pistes d&#39;am&eacute;lioration simple &agrave; mettre en place :</p>
+<ul>
+<li>
+		minification / concat&eacute;nation des fichiers javascript
+	</li>
+<li>
+		minification / concat&eacute;nation des fichiers CSS
+	</li>
+<li>
+		optimisation des images
+	</li>
+<li>
+		optimisation des requ&ecirc;tes SQL
+	</li>
+<li>
+		utilisation de sprites CSS
+	</li>
+</ul>
+<p>
+	Vous trouverez quelques unes de ces bonne pratiques dans ce support&nbsp;<a href="http://supports.severin-bruhat.com/web-performance" target="_blank">http://supports.severin-bruhat.com/web-performance</a></p>
+<h2>
+	Modularit&eacute; / &eacute;volutibilit&eacute;<br />
+</h2>
+<p>
+	Il existe une multitude de plugins pour wordpress (plus de 35000) disponibles ici : <a href="https://wordpress.org/plugins/" target="_blank">https://wordpress.org/plugins/</a>. Quelle que soit la fonctionnalit&eacute; recherch&eacute;e, il y a de fortes chances pour qu&#39;un plugin existe d&eacute;j&agrave; et que vous n&#39;ayez pas besoin de la d&eacute;velopper. Attention cependant, comme pour les autres CMS, qui dit "plugin" dit "code non maitris&eacute;" et potentiellement faille de s&eacute;curit&eacute;. En effet, des failles sont d&eacute;couvertes tr&egrave;s r&eacute;guli&egrave;rement dans des plugins. Ce compte twitter alerte rapidement d&egrave;s qu&#39;une faille est trouv&eacute;e :&nbsp;<a href="https://twitter.com/SecuPress" target="_blank">https://twitter.com/SecuPress</a>. Pensez donc bien &agrave; mettre &agrave; jour r&eacute;guli&egrave;rement vos plugins et votre installation Wordpress.</p>
+<p>
+	Si vous le souhaitez, vous pouvez d&eacute;velopper vous m&ecirc;mes vos plugins et "maitriser" d&#39;avantage le code source. Pour ce faire, je vous laisse jeter un oeil &agrave; la <a href="http://codex.wordpress.org/fr:Accueil" target="_blank">documentation officielle</a>. D&egrave;s lors que maitrisez le code, vous pouvez tout faire, Wordpress n&#39;a pas plus de limite qu&#39;un autre CMS. J&#39;ai l&#39;habitude de dire que de toute fa&ccedil;on avec du temps et de l&#39;argent, quel que soit le CMS, on peut toujours faire ce que le client veut. Alors, si vous &ecirc;tes &agrave; l&#39;aise, codez (RTFM) !</p>
+<h2>
+	Quelques exemples<br />
+</h2>
+<p>
+	Jusque ici, le blabla que vous avez pu lire ne vous a pas convaincu ? OK, alors maintenant place aux exemples :</p>
+<ul>
+<li>
+		Sony Music : <a href="http://www.sonymusic.com/" target="_blank">http://www.sonymusic.com/</a>
+	</li>
+<li>
+		MTV News :<a href="http://www.mtv.com/news/" target="_blank"> http://www.mtv.com/news/</a>
+	</li>
+<li>
+		Best Buy : <a href="http://stores.bestbuy.com/" target="_blank">http://stores.bestbuy.com/</a>
+	</li>
+<li>
+		BATA : <a href="http://www.bata.com/" target="_blank">http://www.bata.com/</a>
+	</li>
+<li>
+		The Rolling Stones : <a href="http://www.rollingstones.com/" target="_blank">http://www.rollingstones.com/</a>
+	</li>
+<li>
+		Bouygues : <a href="http://www.bouygues.com/" target="_blank">http://www.bouygues.com/</a>
+	</li>
+<li>
+		Coca-Cola (FR) : <a href="http://www.coca-cola.fr/" target="_blank">http://www.coca-cola.fr/</a>
+	</li>
+<li>
+		Equidia : <a href="http://www.equidia.fr/" target="_blank">http://www.equidia.fr/</a>
+	</li>
+</ul>
+<p>
+	Vous trouverez d&#39;autres exemples de sites tournant sous Wordpress ici : <a href="http://www.wpbeginner.com/showcase/40-most-notable-big-name-brands-that-are-using-wordpress/" target="_blank">http://www.wpbeginner.com/showcase/40-most-notable-big-name-brands-that-are-using-wordpress/</a>.</p>
+<h2>
+	Conclusion<br />
+</h2>
+<p>
+	Alors, pensez-vous toujours que Wordpress convient uniquement aux petits blogs tels que le mien ? Sans trop m&#39;avancer, je pense que les sites de Coca, des Rolling Stones et de Bata re&ccedil;oivent beaucoup plus de visiteurs et servent beaucoup plus de contenus que mon modeste blog ;)</p>
+<p>
+	N&#39;h&eacute;sitez pas &agrave; laisser un commentaire pour compl&eacute;ter ou contredire mon article.</p>

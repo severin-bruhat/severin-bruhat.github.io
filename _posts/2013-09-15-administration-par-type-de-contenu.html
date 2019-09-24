@@ -1,0 +1,169 @@
+---
+layout: post
+status: publish
+published: true
+title: Administration par type de contenu
+author:
+  display_name: Séverin Bruhat
+  login: admin_sbr
+  email: sbruhat@gmail.com
+  url: http://severin-bruhat.com
+author_login: admin_sbr
+author_email: sbruhat@gmail.com
+author_url: http://severin-bruhat.com
+wordpress_id: 10
+wordpress_url: http://localhost/severin-bruhat.com/?p=10
+date: '2013-09-15 20:18:37 +0100'
+date_gmt: '2013-09-15 19:18:37 +0100'
+categories:
+- Tutoriels
+tags:
+- Drupal 7
+- views
+comments: []
+---
+<p>
+	Drupal propose une gestion de contenu centralis&eacute;e au niveau du backoffice. Ceci est avantageux dans le sens o&ugrave;, le webmaster peut rapidement et facilement saisir du contenu ;&nbsp;en revanche, pour un contributeur manipulant uniquement 2 ou 3 types de contenu il peut &ecirc;tre pr&eacute;f&eacute;rable de disposer d&rsquo;un &eacute;cran de gestion par type de contenu. Nous allons voir comment, &agrave; l&rsquo;aide du module <a href="https://drupal.org/project/admin_views" target="_blank" title="admin_views">admin_views</a>, cr&eacute;er des vues pour simplifier la gestion de contenu.</p>
+<ol>
+<li>
+		<strong>Pr&eacute;-requis&nbsp;:</strong>
+	</li>
+</ol>
+<ul>
+<li>
+		Installer le module admin_views et ses d&eacute;pendances
+	</li>
+<li>
+		Ma&icirc;trise un minimum le fonctionnement de views (<a href="http://www.drupalfacile.org/videos/episode-14-debuter-avec-module-views-sous-drupal-7-premiere-partie">http://www.drupalfacile.org/videos/episode-14-debuter-avec-module-views-sous-drupal-7-premiere-partie</a>, <a href="http://www.drupalfacile.org/videos/episode-14-debuter-avec-module-views-sous-drupal-7-deuxieme-partie">http://www.drupalfacile.org/videos/episode-14-debuter-avec-module-views-sous-drupal-7-deuxieme-partie</a>)
+	</li>
+</ul>
+<ol start="2">
+<li>
+		<strong>Admin_views&nbsp;:</strong>
+	</li>
+</ol>
+<p>
+	Une fois ce module install&eacute;, la page de gestion de contenu voit appara&icirc;tre de nouveaux filtres&nbsp;:</p>
+<p>
+	<img alt="" src="http://severin-bruhat.local/wp-content/uploads/image/tutoriels/img01.png" style="width: 800px; height: 66px;" /></p>
+<p>
+	En fait, ce module a install&eacute; une vue sp&eacute;cifique &agrave; la gestion de contenu. Vous pouvez trouver cette vue dans le menu &laquo;&nbsp;Structure > Views&nbsp;&raquo;&nbsp;:</p>
+<p>
+	<img alt="" src="http://severin-bruhat.local/wp-content/uploads/image/tutoriels/img02.png" style="width: 800px; height: 136px;" /></p>
+<p>
+	Vous remarquerez qu&rsquo;une vue a &eacute;galement &eacute;t&eacute; install&eacute;e pour la gestion des utilisateurs.</p>
+<p>
+	Vous allez me dire &laquo;&nbsp;jusque-l&agrave;, rien d&rsquo;extraordinaire&nbsp;!&nbsp;&raquo;. Effectivement, mais gr&acirc;ce &agrave; la souplesse de views, vous allez pouvoir cr&eacute;er vos propres vues et ainsi g&eacute;rer&nbsp;: les filtres de recherche, mais aussi les colonnes disponibles dans le tableau des r&eacute;sultas&nbsp;de recherche.</p>
+<ol start="3">
+<li>
+		<strong>Customisation</strong>
+	</li>
+</ol>
+<p>
+	Nous allons prendre en exemple un type de contenu &laquo;&nbsp;Ev&egrave;nement&nbsp;&raquo; ayant la structure suivante&nbsp;:</p>
+<p>
+	<img alt="" src="http://severin-bruhat.local/wp-content/uploads/image/tutoriels/img03.png" style="width: 600px; height: 306px;" /></p>
+<p>
+	Nous allons maintenant cr&eacute;er une vue sp&eacute;cifique permettant la gestion des &eacute;v&egrave;nements (et uniquement de ce type de contenu) en backoffice. Pour ce faire&nbsp;:</p>
+<ul>
+<li>
+		<span style="font-size: 13px; line-height: 1.6em;">&nbsp;Se rendre sur l&rsquo;&eacute;cran de gestion des vues&nbsp;: admin/structure/views</span>
+	</li>
+<li>
+		<span style="font-size: 13px; line-height: 1.6em;">Modifier la vue &laquo;&nbsp;Administration&nbsp;: node&nbsp;&raquo;&nbsp;:</span>
+	</li>
+</ul>
+<p>
+	<span style="font-size: 13px; line-height: 1.6em;"><img alt="" src="http://severin-bruhat.local/wp-content/uploads/image/tutoriels/img04.png" style="width: 800px; height: 121px;" /></span></p>
+<ul>
+<li>
+		Cr&eacute;er un nouvel affichage de type &laquo;&nbsp;Page&nbsp;&raquo;&nbsp;
+	</li>
+</ul>
+<p>
+	<img alt="" src="http://severin-bruhat.local/wp-content/uploads/image/tutoriels/img05.png" style="width: 192px; height: 204px;" /></p>
+<ul>
+<li>
+		Modifier le &laquo;&nbsp;diplay name&nbsp;&raquo; en Events
+	</li>
+<li>
+		<span style="font-size: 13px; line-height: 1.6em;">D&eacute;finir un chemin dans &laquo;&nbsp;page setting&nbsp;&raquo;&nbsp;: exemple&nbsp;: admin/content/events</span>
+	</li>
+<li>
+		Enregistrer la vue
+	</li>
+</ul>
+<p>
+	A partir de maintenant, vous disposer en backoffice d&rsquo;une vue accessible via le chemin suivant "http://mondomaine/admin/content/events". Cette vue est, pour le moment, la m&ecirc;me que admin/content. Nous allons donc maintenant la modifier afin qu&rsquo;elle remonte uniquement les contenus de type&nbsp; &laquo;&nbsp;&eacute;v&egrave;nement&nbsp;&raquo;.</p>
+<ul>
+<li>
+		Editer la vue nouvellement cr&eacute;&eacute;e
+	</li>
+<li>
+		Modifier le filtre (filter criteria) afin de pr&eacute;ciser le type de contenu &eacute;v&egrave;nement :
+	</li>
+</ul>
+<p>
+	<img alt="" src="http://severin-bruhat.local/wp-content/uploads/image/tutoriels/img06.png" style="width: 232px; height: 85px;" /></p>
+<ul>
+<li>
+		Ajouter une colonne dans le tableau de r&eacute;sultat afin d&rsquo;y ajouter la date de l&rsquo;&eacute;v&egrave;nement en ajoutant un champ :
+	</li>
+</ul>
+<p>
+	<img alt="" src="http://severin-bruhat.local/wp-content/uploads/image/tutoriels/img07.png" style="width: 242px; height: 281px;" /></p>
+<ul>
+<li>
+		Ajouter un filtre sur cette date&nbsp;
+	</li>
+</ul>
+<p>
+	<img alt="" src="http://severin-bruhat.local/wp-content/uploads/image/tutoriels/img08.png" style="width: 249px; height: 210px;" /></p>
+<p>
+	Apr&egrave;s toutes ces &eacute;tapes, vous obtiendrez la vue suivante&nbsp;:&nbsp;</p>
+<p>
+	<img alt="" src="http://severin-bruhat.local/wp-content/uploads/image/tutoriels/img09.png" style="width: 609px; height: 497px;" /></p>
+<p>
+	Cette vue permet donc de g&eacute;rer (filtrer, lister, modifier et supprimer) les contenus de type &laquo;&nbsp;&eacute;v&egrave;nement&nbsp;&raquo;. Nous allons maintenant rajouter un dernier &eacute;l&eacute;ment&nbsp;: un lien permettant de cr&eacute;er un &eacute;v&egrave;nement directement depuis cette vue&nbsp;:</p>
+<ul>
+<li>
+		Editer la vue
+	</li>
+<li>
+		<span style="font-size: 13px; line-height: 1.6em;">Ajouter un en-t&ecirc;te de type &laquo;&nbsp;Global: Unfiltered text&nbsp;&raquo;</span>
+	</li>
+</ul>
+<p>
+	<span style="font-size: 13px; line-height: 1.6em;">​<img alt="" src="http://severin-bruhat.local/wp-content/uploads/image/tutoriels/img10.png" style="width: 494px; height: 225px;" /></span></p>
+<ul>
+<li>
+		Saisissez le lien vers la page d&rsquo;ajout &laquo;&nbsp;<a href="http://mondomaine/node/add/evenement">Ajouter un Ev&egrave;nement</a>&nbsp;&raquo;, et voil&agrave;&nbsp;le r&eacute;sultat :
+	</li>
+</ul>
+<p>
+	<img alt="" src="http://severin-bruhat.local/wp-content/uploads/image/tutoriels/img11.png" style="width: 609px; height: 181px;" /></p>
+<ol start="4">
+<li>
+		<strong>Acc&eacute;der &agrave; la gestion des &eacute;v&egrave;nements :</strong>
+	</li>
+</ol>
+<p>
+	Plusieurs solutions sont possibles pour permettre au webmaster d&rsquo;acc&eacute;der &agrave; cette vue nouvellement cr&eacute;&eacute;e&nbsp;:</p>
+<ul>
+<li>
+		Utiliser le module &laquo;&nbsp;shortcut&nbsp;&raquo; et configurer un lien vers &laquo;&nbsp;admin/content/events&nbsp;&raquo;&nbsp;:
+	</li>
+</ul>
+<p>
+	<img alt="" src="http://severin-bruhat.local/wp-content/uploads/image/tutoriels/img12.png" style="width: 609px; height: 166px;" /></p>
+<p>
+	Vous pouvez ainsi donner un acc&egrave;s direct &agrave; toutes vos vues</p>
+<ul>
+<li>
+<p>
+			Si vous vous sentez d&rsquo;humeur &agrave; coder, il vous suffit de cr&eacute;er une entr&eacute;e dans le menu principal de la barre d&#39;administration (tuto &agrave; venir)
+		</p>
+</li>
+</ul>
+<p>
+	Et voil&agrave; ! Vous &ecirc;tes maintenant capable de g&eacute;rer des vues pour administrer vos contenus. N&#39;h&eacute;sitez pas &agrave; laisser un commentaire si vous avez des questions, ou bien tout simplement si cet article vous a plu.&nbsp;</p>

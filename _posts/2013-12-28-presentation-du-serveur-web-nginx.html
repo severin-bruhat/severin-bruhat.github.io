@@ -1,0 +1,58 @@
+---
+layout: post
+status: publish
+published: true
+title: Pr&eacute;sentation du serveur web Nginx
+author:
+  display_name: Séverin Bruhat
+  login: admin_sbr
+  email: sbruhat@gmail.com
+  url: http://severin-bruhat.com
+author_login: admin_sbr
+author_email: sbruhat@gmail.com
+author_url: http://severin-bruhat.com
+wordpress_id: 231
+wordpress_url: http://severin-bruhat.local/?p=231
+date: '2013-12-28 10:46:31 +0000'
+date_gmt: '2013-12-28 09:46:31 +0000'
+categories:
+- Blog
+tags:
+- PHP
+- Ngnix
+- Serveur web
+comments: []
+---
+<h2>
+	Pr&eacute;sentation<br />
+</h2>
+<p>
+	Apache est un des permiers serveurs web &agrave; avoir vu le jour, il est aujourd&#39;hui utilis&eacute; par environ 50% des sites (source Netcraft) et a largement fait ses preuves. Mais aujourd&#39;hui le World Wild Web a explos&eacute;, et il n&#39;est pas rare qu&#39;un site doive g&eacute;rer plus de 10000 utilisateurs simultan&eacute;ment, il s&#39;agit de ce que l&#39;on appelle le probl&egrave;me "C10k" (C plus client, 10k pour 10000). L&#39;utilisation des processus faite par Apache est tr&egrave;s gourmande, c&#39;est pourquoi de nouvelles alternatives ont vu le jour. Nginx est l&#39;une d&#39;entre elles.</p>
+<p>
+	<img alt="logo nginx" src="http://severin-bruhat.local/wp-content/uploads/image/tutoriels/nginx_logo(1).gif" style="width: 320px; height: 125px;" /></p>
+<p>
+	Bas&eacute; sur la programation &eacute;v&egrave;nementielle asynchrone, Nginx minimise le nombre d&#39;appels syst&egrave;mes, en particulier, tout ce qui est li&eacute; &agrave; la m&eacute;moire. Tout comme Apache, Nginx est modulaire et dispose d&#39;un grand nombre de fonctionnalit&eacute;s : authentification HTTP, compression Gzip, proxying, FastCGI, url-rewriting, localisation GeoIP... (voir la <a href="http://wiki.nginx.org/Modules" target="_blank">liste des modules</a>).</p>
+<h2>
+	​Installation et configuration&nbsp;<br />
+</h2>
+<p>
+	Une commande classique fera l&#39;affaire : "apt-get install nginx"<br />
+	Cet artcile n&#39;&eacute;tant pas un tutoriel, mais plut&ocirc;t une pr&eacute;sentation, je vous laisse vous r&eacute;f&eacute;rer &agrave; la <a href="http://wiki.nginx.org/Install" target="_blank">documentation officielle</a> (RTFM &nbsp;:p) pour la configuration.</p>
+<h2>
+	Fonctionnement avec PHP<br />
+</h2>
+<p>
+	Nginx fonctionne avec le mode FPM de PHP (entretien en permanence un certain nombre de process).<br />
+	Vous pourez l&#39;installer &agrave; l&#39;aide de la commande : apt-get install php5-fpm<br />
+	Voici le lien vers diff&eacute;rents exemples de configuration :&nbsp;<a href="http://wiki.nginx.org/Configuration" target="_blank">http://wiki.nginx.org/Configuration</a></p>
+<h2>
+	Conclusion<br />
+</h2>
+<p>
+	Ces derni&egrave;res ann&eacute;es, Nginx tend &agrave; s&#39;imposer de plus en plus sur le march&eacute;. Voici, la r&eacute;partition globale des serveurs web entre 1995 et 2013 (source Netcraft) :</p>
+<p>
+	<img alt="" src="http://severin-bruhat.local/wp-content/uploads/image/tutoriels/Capture%20d%E2%80%99%C3%A9cran%202013-12-23%20%C3%A0%2014_40_50.png" style="width: 603px; height: 346px;" />​</p>
+<p>
+	En plus d&#39;&ecirc;tre un serveur web, Nginx peut &eacute;galement &ecirc;tre configur&eacute; comme&nbsp;reverse proxy pour g&eacute;rer le cache statique et &eacute;galement r&eacute;partir la charge sur diff&eacute;rents frontaux&nbsp;(load balancing). Contrairement &agrave; Varnish notamment, Nginx g&egrave;re&nbsp;le SSL.</p>
+<p>
+	Si vous n&#39;avez encore jamais eu l&#39;occasion de le tester, il est grand temps de vous y mettre !&nbsp;De simples tests de performances avec Apache Benchmark (<a href="http://httpd.apache.org/docs/2.2/programs/ab.html" target="_blank">ab</a>) vous permettront&nbsp;de faire une rapide&nbsp;comparaison entre Nginx et Apache.</p>

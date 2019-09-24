@@ -1,0 +1,28 @@
+---
+layout: post
+status: publish
+published: true
+title: Modifier le mot de passe root de mysql
+author:
+  display_name: Séverin Bruhat
+  login: admin_sbr
+  email: sbruhat@gmail.com
+  url: http://severin-bruhat.com
+author_login: admin_sbr
+author_email: sbruhat@gmail.com
+author_url: http://severin-bruhat.com
+wordpress_id: 481
+wordpress_url: http://severin-bruhat.local/?p=481
+date: '2014-06-12 11:41:56 +0100'
+date_gmt: '2014-06-12 10:41:56 +0100'
+categories:
+- Tutoriels
+tags:
+- mysql
+comments: []
+---
+<p>
+	Voici comment modifier le mot de passe root en cas de besoin. Il faut bien &eacute;videmment avoir connaissance du mot de passe actuel.&nbsp;</p>
+<pre>
+<code>$ mysqladmin -u root -p&#39;oldpassword&#39; password newpass
+</code></pre>

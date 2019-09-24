@@ -1,0 +1,28 @@
+---
+layout: post
+status: publish
+published: true
+title: Cr&eacute;er un zip sans les fichiers DS_Store sous MacOS X
+author:
+  display_name: Séverin Bruhat
+  login: admin_sbr
+  email: sbruhat@gmail.com
+  url: http://severin-bruhat.com
+author_login: admin_sbr
+author_email: sbruhat@gmail.com
+author_url: http://severin-bruhat.com
+wordpress_id: 791
+wordpress_url: http://severin-bruhat.local/?p=791
+date: '2015-07-28 14:27:55 +0100'
+date_gmt: '2015-07-28 13:27:55 +0100'
+categories:
+- Tutoriels
+tags: []
+comments: []
+---
+<p>
+	Si comme moi vous en avez marre de trouver des fichiers DS_Store dans les zip que vous cr&eacute;ez, voici une petite commande bien pratique qui vous permettra de cr&eacute;er une archive propre (sans les fichiers MAC) :</p>
+<pre>
+<code>
+	zip -r archive.zip dossier_source -x "*.DS_Store"
+</code></pre>

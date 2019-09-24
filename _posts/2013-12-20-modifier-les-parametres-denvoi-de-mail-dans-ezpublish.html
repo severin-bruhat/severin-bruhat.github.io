@@ -1,0 +1,96 @@
+---
+layout: post
+status: publish
+published: true
+title: Modifier les param&egrave;tres d'envoi de mail dans ezPublish
+author:
+  display_name: Séverin Bruhat
+  login: admin_sbr
+  email: sbruhat@gmail.com
+  url: http://severin-bruhat.com
+author_login: admin_sbr
+author_email: sbruhat@gmail.com
+author_url: http://severin-bruhat.com
+wordpress_id: 212
+wordpress_url: http://severin-bruhat.local/?p=212
+date: '2013-12-20 13:01:47 +0000'
+date_gmt: '2013-12-20 12:01:47 +0000'
+categories:
+- Tutoriels
+tags:
+- ezPublish
+comments: []
+---
+<p>
+	EZ Publish permet de r&eacute;aliser des formulaires (de contact par exemple) gr&acirc;ce &agrave; la collecte d&#39;informations. Il est aussi possible de configurer ezPublish afin d&#39;envoyer un email suite &agrave; la r&eacute;cup&eacute;ration des informations. Le template du mail envoy&eacute; se trouve dans &nbsp;&nbsp;<strong>/design/standard/templates/content/collectedinfomail/form.tpl</strong>. Vous pouvez ainsi surcharger ce fichier en le copiant ici :&nbsp; <strong>extension/mon_extension/design/mon_design/templates/content/collectedinfomail/mon_formulaire.tpl</strong>, o&ugrave; "mon_formulaire" est &nbsp;le nom de la classe de contenu contenant le formulaire qui devra envoyer un mail.</p>
+<p>
+	Les param&egrave;tres du mail (destinataires, objet...) peuvent &ecirc;tre surcharg&eacute;s au sein de ce template de la mani&egrave;re suivante :</p>
+<pre class="eztemplate" style="font-size: 13px; background-color: rgb(248, 248, 248); margin-top: 10px; margin-bottom: 10px; padding: 5px; border: 1px solid rgb(224, 224, 224); overflow: auto; color: rgb(83, 85, 72); line-height: normal;">
+<span style="color: rgb(102, 204, 102);">{</span><a href="http://ez.no/doc/ez_publish/technical_manual/4_x/reference/template_functions/variables/set-block" style="color: rgb(4, 143, 253);"><span style="color: rgb(6, 0, 255);">set-block</span></a> <span style="color: rgb(0, 119, 0);">scope</span><span style="color: rgb(102, 204, 102);">=</span><span style="color: rgb(221, 0, 0);">root</span> <span style="color: rgb(0, 119, 0);">variable</span><span style="color: rgb(102, 204, 102);">=</span><span style="color: rgb(221, 0, 0);">email_sender<span style="color: rgb(102, 204, 102);">}</span></span>sender@server.net<span style="color: rgb(102, 204, 102);">{</span><span style="color: rgb(102, 204, 102);">/</span><a href="http://ez.no/doc/ez_publish/technical_manual/4_x/reference/template_functions/variables/set-block" style="color: rgb(4, 143, 253);"><span style="color: rgb(6, 0, 255);">set-block</span></a><span style="color: rgb(102, 204, 102);">}</span></pre>
+<p>
+	Voici la liste des diff&eacute;rents param&egrave;tres modifiables de cette mani&egrave;re :</p>
+<ul>
+<li>
+		subject : sujet du&nbsp;mail
+	</li>
+<li>
+		email_receiver : email du destinataire
+	</li>
+<li>
+		email_cc_receivers : email des destinataires en copie
+	</li>
+<li>
+		email_bcc_receivers : <span style="font-size: 13px;">email des&nbsp;</span>destinataires en copie cach&eacute;e
+	</li>
+<li>
+		email_sender : email de l&#39;exp&eacute;diteur
+	</li>
+<li>
+		email_reply_to : email de r&eacute;ponse
+	</li>
+<li>
+		redirect_to_node_id : node_id du n&oelig;ud vers lequel effectuer une redirection apr&egrave;s l&#39;envoi de l&#39;email
+	</li>
+</ul>
+<p>
+	Le fichier <strong>collect.ini.append.php</strong> (&agrave; positionner dans les settings de votre extension) vous permettra en autre :</p>
+<ul>
+<li>
+		d&#39;activer / d&eacute;sactiver l&#39;envoir de mail sur un formulaire&nbsp;
+	</li>
+<li>
+		de d&eacute;finir l&#39;action &agrave; effectuer suite &agrave; la soumission (redirection vers une URL, affichage des informations collect&eacute;es)
+	</li>
+<li>
+		d&#39;autoriser un utilisateur &agrave; utiliser plusieurs fois le formulaire
+	</li>
+</ul>
+<p>
+	Voici un exemple de configuration :</p>
+<pre>
+
+<<?php /* #?ini charset="utf-8"?
+ 
+[InfoSettings]
+# Associe l&#39;identifier de la classe de contenu au type de collection d&#39;information
+TypeList[formulaire_contact]=formulaire_contact
+TypeAttribute=collection_type
+ 
+[EmailSettings]
+# D&eacute;finit que les informations collect&eacute;es doivent &ecirc;tre envoy&eacute;es par email
+SendEmailList[formulaire_contact]=enabled
+ 
+[DisplaySettings]
+Display=result
+DisplayList[formulaire_contact]=result
+ 
+[CollectionSettings]
+# Autorise les utilisateurs anonymes &agrave; utiliser le formulaire
+CollectAnonymousDataList[formulaire_contact]=enabled
+ 
+# Autorise un utilisateur &agrave; utiliser plusieurs fois le formulaire
+CollectionUserData=multiple
+CollectionUserDataList[formulaire_contact]=multiple
+ 
+*/ >?php
+</pre>

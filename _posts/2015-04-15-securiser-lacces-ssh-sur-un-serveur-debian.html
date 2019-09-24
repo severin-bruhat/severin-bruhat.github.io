@@ -1,0 +1,70 @@
+---
+layout: post
+status: publish
+published: true
+title: S&eacute;curiser l'acc&egrave;s ssh sur un serveur Debian
+author:
+  display_name: Séverin Bruhat
+  login: admin_sbr
+  email: sbruhat@gmail.com
+  url: http://severin-bruhat.com
+author_login: admin_sbr
+author_email: sbruhat@gmail.com
+author_url: http://severin-bruhat.com
+wordpress_id: 718
+wordpress_url: http://severin-bruhat.local/?p=718
+date: '2015-04-15 22:11:16 +0100'
+date_gmt: '2015-04-15 21:11:16 +0100'
+categories:
+- Tutoriels
+tags:
+- ssh
+- s&eacute;curit&eacute;
+comments: []
+---
+<p>
+	Voici les diff&eacute;rentes &eacute;tapes pour s&eacute;curiser l&#39;acc&egrave;s ssh &agrave; un serveur.</p>
+<h2>
+	Modifier le mot de passe de l&#39;utilisateur root<br />
+</h2>
+<p>
+	Connectez vous en root et saisissez la commande suivante :</p>
+<p>
+	<code>passwd </code></p>
+<p>
+	Saisissez ensuite votre nouveau mot de passe.</p>
+<h2>
+	Ajouter un nouvel utilisateur<br />
+</h2>
+<p>
+	L&#39;id&eacute;e est de ne plus utiliser le compte root pour les connexions &agrave; distance, vous devez donc cr&eacute;er un nouvel utilisateur que vous utiliserez pour les connexions ssh. Tapez les commandes suivantes &nbsp;:</p>
+<p>
+	<code>groupadd sshusers #</code><span style="line-height: 20.7999992370605px;">ajout d&#39;un nouveau groupe d&#39;utilisateurs</span><br />
+	<code>useradd -m nouveauUser #cr&eacute;ation du nouveau user<br />
+	passwd nouveauUser #cr&eacute;ation du mot de passe du compte<br />
+	usermod -a -G sshusers nouveauUser #ajout du nouvel utilisateur au groupe </code></p>
+<h2>
+	Ajustement de la configurationde ssh<br />
+</h2>
+<p>
+	Editez le fichier de configuration :</p>
+<p>
+	<code>vim /etc/ssh/sshd_config </code></p>
+<p>
+	Modifier le port par d&eacute;faut :</p>
+<p>
+	<code>Port 2222 #par exemple </code></p>
+<p>
+	Emp&ecirc;chez le compte root de se connecter en ssh :</p>
+<p>
+	<code>PermitRootLogin no </code></p>
+<p>
+	Autorisez uniquement les utilisateurs de groupe sshusers &agrave; se connecter au service :</p>
+<p>
+	<code>AllowGroups sshusers </code></p>
+<p>
+	Red&eacute;marrez le service SSH :</p>
+<p>
+	<code>/etc/init.d/ssh restart </code></p>
+<p>
+	A vous de jouer !</p>

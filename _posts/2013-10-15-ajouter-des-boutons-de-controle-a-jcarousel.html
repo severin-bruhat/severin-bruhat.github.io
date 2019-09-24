@@ -1,0 +1,135 @@
+---
+layout: post
+status: publish
+published: true
+title: Ajouter des boutons de contr&ocirc;le &agrave; jcarousel
+author:
+  display_name: Séverin Bruhat
+  login: admin_sbr
+  email: sbruhat@gmail.com
+  url: http://severin-bruhat.com
+author_login: admin_sbr
+author_email: sbruhat@gmail.com
+author_url: http://severin-bruhat.com
+wordpress_id: 97
+wordpress_url: http://severin-bruhat.local/?p=97
+date: '2013-10-15 07:57:37 +0100'
+date_gmt: '2013-10-15 06:57:37 +0100'
+categories:
+- Tutoriels
+tags:
+- Drupal 7
+- views
+- jcarousel
+comments: []
+---
+<p>
+	Le module <a href="https://drupal.org/project/jcarousel">jcarousel </a>permet facilement d&rsquo;int&eacute;grer un carousel dans une page Drupal.<br />
+	Il existe deux mani&egrave;res pour ajouter un carousel&nbsp;:</p>
+<ul>
+<li>
+		<span style="line-height: 1.6em;">via views&nbsp;: m&eacute;thode la plus simple, permettant de s&eacute;lectionner les donn&eacute;es et la mise en forme en back-office</span>
+	</li>
+<li>
+		<span style="line-height: 1.6em;">via l&rsquo;API (jcarousel_add($class_name, $settings), m&eacute;thode plus complexe n&eacute;csessitant de&nbsp;mettre les mains dans le code&nbsp;mais offrant un contr&ocirc;le total du code</span>
+	</li>
+</ul>
+<p>
+	<span style="line-height: 1.6em;">​</span><span style="line-height: 1.6em;">Nous allons dans ce tutoriel travailler avec la premi&egrave;re solution afin de cr&eacute;er un block gr&acirc;ce &agrave; views. Cette m&eacute;thode permet de configurer un certain nombre de param&egrave;tres directement en backoffice&nbsp;: type de d&eacute;filement, temps de pause etc. En revanche ce mode de fontionnement n&rsquo;offre pas la possibilit&eacute; d&rsquo;ajouter les boutons &laquo;&nbsp;play&nbsp;&raquo; et &laquo;&nbsp;stop&nbsp;&raquo; permettant d&rsquo;arr&ecirc;ter et de reprendre le d&eacute;filement.</span></p>
+<p>
+	Alors comment faire si vous souhaitez garder la souplesse de views tout en b&eacute;n&eacute;ficiant de la customisation offerte par jcarousel_add&nbsp;? Et bien il va falloir mettre les mains dans le cambouis et modifier le template d&rsquo;affichage du carousel.</p>
+<ol style="font-size: 13px;">
+<li>
+		<strong>Pr&eacute;-requis&nbsp;</strong>
+	</li>
+</ol>
+<ul style="font-size: 13px;">
+<li>
+		Installer <a href="https://drupal.org/project/jcarousel">jcarousel </a>et <a href="https://drupal.org/project/views">views</a>
+	</li>
+<li>
+		Ma&icirc;triser un minimum views
+	</li>
+</ul>
+<ol start="2" style="font-size: 13px;">
+<li>
+		<strong>Cr&eacute;ation du carousel et affichage en page d&rsquo;accueil</strong>
+	</li>
+</ol>
+<p>
+	<strong>​</strong>Une fois le module activ&eacute;, rendez-vous sur la page de gestion des vues (admin/structure/views) et cr&eacute;ez-en une nouvelle (de type block) en choisissant le format d&lsquo;affichage (display format) &laquo;&nbsp;jCarousel&nbsp;&raquo;&nbsp;:</p>
+<p>
+	<a href="http://severin-bruhat.local/wp-content/uploads/2013/10/createBlock.png"><img alt="createBlock" class="alignnone size-medium wp-image-100" height="146" src="http://severin-bruhat.local/wp-content/uploads/2013/10/createBlock-300x146.png" width="300" /></a></p>
+<p>
+	Pour les besoins de ce tutoriel, nous n&rsquo;allons pas customiser la vue. Enregistrer-l&agrave; et ajouter ce block nouvellement cr&eacute;&eacute; dans une r&eacute;gion de votre site (admin/structure/block).&nbsp;Normalement vous obtiendrez quelque chose comme ceci&nbsp;:</p>
+<p>
+	<a href="http://severin-bruhat.local/wp-content/uploads/2013/10/carousel.png"><img alt="carousel" class="alignnone size-medium wp-image-99" height="76" src="http://severin-bruhat.local/wp-content/uploads/2013/10/carousel-300x76.png" width="300" /></a></p>
+<p>
+	Il est possible de modifier le nombre d&rsquo;items affich&eacute;s, de rajouter les num&eacute;ros pour naviguer d&rsquo;un slide &agrave; un autre via les settings du jCarouel disponible dans la gestion de la vue ;&nbsp;je ne vais pas m&rsquo;attarder sur ce point dans ce tutoriel :</p>
+<p>
+	<a href="http://severin-bruhat.local/wp-content/uploads/2013/10/blocStyleOptions.png"><img alt="blocStyleOptions" class="alignnone size-medium wp-image-102" height="300" src="http://severin-bruhat.local/wp-content/uploads/2013/10/blocStyleOptions-224x300.png" width="224" /></a></p>
+<ol start="3" style="font-size: 13px;">
+<li>
+		<strong>Ajout des boutons play / stop</strong>
+	</li>
+</ol>
+<p>
+	Le principe va &ecirc;tre le suivant&nbsp;:&nbsp;</p>
+<ul>
+<li>
+		Positionner les contr&ocirc;les html (liens, boutons) dans le template
+	</li>
+<li>
+		R&eacute;cup&eacute;rer l&rsquo;instance javascript du carousel cr&eacute;&eacute; par drupal
+	</li>
+<li>
+		Attacher les actions aux boutons
+	</li>
+</ul>
+<p>
+	Il faut tout d&rsquo;abord copier le fichier &laquo;&nbsp;jcarousel-view.tpl.php&nbsp;&raquo; (modules\jcarousel\includes) dans votre th&egrave;me afin de le surcharger, c&rsquo;est maintenant ce fichier qui sera utilis&eacute; pour afficher votre carousel.</p>
+<p>
+	Pour r&eacute;cup&eacute;rer l&rsquo;instance de carousel, il faut connaitre sont identifiant, pour cela voici une m&eacute;thode simple&nbsp;: afficher le code source de votre page et rechercher la cl&eacute; &laquo;&nbsp;"carousels":&nbsp;&raquo; qui doit &ecirc;tre dans une cha&icirc;ne javascript commen&ccedil;ant par &laquo;&nbsp;jQuery.extend(Drupal.settings&raquo;. Cette cl&eacute; contient un tableau de carousel (un seul item dans notre cas) dont l&rsquo;identifiant et du style &laquo;&nbsp;jcarousel-dom-1&nbsp;&raquo;&nbsp;:</p>
+<p>
+	<a href="http://severin-bruhat.local/wp-content/uploads/2013/10/jquery.png"><img alt="jquery" class="alignnone size-medium wp-image-101" height="118" src="http://severin-bruhat.local/wp-content/uploads/2013/10/jquery-300x118.png" width="300" /></a></p>
+<p>
+	Une fois que vous avez&nbsp;cette identifiant, &eacute;ditez&nbsp;le fichier de template et&nbsp;positionnez&nbsp;vos contr&ocirc;les HTML o&ugrave; bon vous semble&nbsp;:</p>
+<blockquote>
+<p>
+		<span style="font-size:12px;">
+<ul class="btn-play-pause">
+		<span style="line-height: 1.6em;">&nbsp; &nbsp; &nbsp; &nbsp;
+<li><a href="javascript:void(0);" class="play" id="btn_play"><span class="hidden"><?php echo t("play"); ?></span></a></li>
+<p></span><br />
+		<span style="line-height: 1.6em;">&nbsp; &nbsp; &nbsp; &nbsp;
+<li><a href="javascript:void(0);" class="pause" id="btn_pause"><span class="hidden"><?php echo t("stop"); ?></span></a></li>
+<p></span><br />
+		<span style="line-height: 1.6em;"></ul>
+<p></span></span>
+	</p>
+</blockquote>
+<p>
+	Ajoutez&nbsp;ensuite le javascript suivant&nbsp;:</p>
+<blockquote>
+<p>
+		<span style="font-size:12px;"><script type="text/javascript"><br />
+		<span style="line-height: 1.6em;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; //ajout d&rsquo;une function de callback sur le carousel</span><br />
+		<span style="line-height: 1.6em;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; jQuery.extend(Drupal.settings.jcarousel.carousels["jcarousel-dom-1"], {</span><br />
+		<span style="line-height: 1.6em;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;"initCallback": jcarousel_initCallback</span><br />
+		<span style="line-height: 1.6em;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;});</span></span>
+	</p>
+<p>
+		<span style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; //function de callback permettant d&rsquo;affecter les actions aux liens play / stop<br />
+		<span style="line-height: 1.6em;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; function jcarousel_initCallback(carousel) {</span><br />
+		<span style="line-height: 1.6em;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;jQuery(&#39;#btn_pause&#39;).bind(&#39;click&#39;, function() {</span><br />
+		<span style="line-height: 1.6em;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;carousel.stopAuto();</span><br />
+		<span style="line-height: 1.6em;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;});</span><br />
+		<span style="line-height: 1.6em;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;jQuery(&#39;#btn_play&#39;).bind(&#39;click&#39;, function() {</span><br />
+		<span style="line-height: 1.6em;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;carousel.startAuto();</span><br />
+		<span style="line-height: 1.6em;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;});</span><br />
+		<span style="line-height: 1.6em;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</span><br />
+		<span style="line-height: 1.6em;"></script></span></span>
+	</p>
+</blockquote>
+<p>
+	Sauvegardez le fichier, videz les caches, rechargez la page&hellip; enjoy&nbsp;;)</p>

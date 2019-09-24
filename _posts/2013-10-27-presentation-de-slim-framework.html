@@ -1,0 +1,100 @@
+---
+layout: post
+status: publish
+published: true
+title: Pr&eacute;sentation de Slim Framework
+author:
+  display_name: Séverin Bruhat
+  login: admin_sbr
+  email: sbruhat@gmail.com
+  url: http://severin-bruhat.com
+author_login: admin_sbr
+author_email: sbruhat@gmail.com
+author_url: http://severin-bruhat.com
+wordpress_id: 134
+wordpress_url: http://severin-bruhat.local/?p=134
+date: '2013-10-27 23:16:46 +0000'
+date_gmt: '2013-10-27 22:16:46 +0000'
+categories:
+- Blog
+tags:
+- PHP
+- API
+- REST
+- Slim Framework
+comments: []
+---
+<p>
+	Aujourd&#39;hui je vais vous pr&eacute;senter un framework PHP permetant de cr&eacute;er une API REST, il s&#39;agit de <a href="http://www.slimframework.com/" target="_blank">Slim Framework</a>. Je l&#39;ai utilis&eacute; dans le cadre d&#39;un projet perso, peut-&ecirc;tre un jour disponible sur mon site... Il s&#39;agit un outil tr&egrave;s simple &agrave; mettre en place et &agrave; prendre en main, notamment gr&acirc;ce &agrave; sa <a href="http://docs.slimframework.com/" target="_blank">documentation </a>claire et compl&egrave;te.</p>
+<p>
+	Commen&ccedil;ons par le d&eacute;but : que signifie REST ? "Representational State Transfer" est un type d&rsquo;architecture permettant de mettre en place des webservices, il repose sur le protocole HTTP. Le principe est simple, le programmeur manipule directement les m&eacute;thodes POST, PUT, GET et DELETE pour effectuer les actions de CRUD (Create, Read, Update, Delete):</p>
+<ul>
+<li>
+		cr&eacute;ation : POST
+	</li>
+<li>
+		modification : PUT
+	</li>
+<li>
+		lecture : GET
+	</li>
+<li>
+		suppresssion : DELETE
+	</li>
+</ul>
+<p>
+	Revenons &agrave; notre&nbsp;mouton&nbsp;"Slim", le snippet pr&eacute;sent sur la page d&#39;accueil du site donne le ton, ces quelques lignes de code suffisent pour cr&eacute;er un web service :</p>
+<pre>
+<code><?php
+$app = new \Slim\Slim(); //initialisation de l&#39;application
+$app->get(&#39;/hello/:name&#39;, function ($name) { //route accessible via l&#39;URL "http://nom_de_domaine_api/hello/toto"
+    echo "Hello, $name"; // renvoie "Hello toto"
+});
+$app->run(); //lance l&#39;application
+</code></pre>
+<p>
+	Vous trouverez ci-dessous la liste des principales fonctionnalit&eacute;s :</p>
+<ul>
+<li>
+		<span style="font-size: 13px;">encryption AES-256</span>
+	</li>
+<li>
+		<span style="font-size: 13px;">authentification HTTP</span>
+	</li>
+<li>
+		<span style="font-size: 13px;">gestion d&#39;erreurs </span>
+	</li>
+<li>
+		<span style="font-size: 13px;">mode debbug</span>
+	</li>
+<li>
+		cache
+	</li>
+<li>
+		PDO
+	</li>
+<li>
+		templating (Twig, Smarty)
+	</li>
+<li>
+		sessions (cookies)
+	</li>
+<li>
+		middleware
+	</li>
+</ul>
+<p>
+	Si vous avez &agrave; mettre en place une API REST, je vous conseil de jeter un oeil &agrave; Slim. De mon point de vue, voici les principaux avantages de ce framework :</p>
+<ul>
+<li>
+		facile &agrave; prendre en main
+	</li>
+<li>
+		l&eacute;ger
+	</li>
+<li>
+		performant&nbsp;
+	</li>
+</ul>
+<p>
+	J&#39;esp&egrave;re que cet article vous aura permis de d&eacute;couvrir un nouvel outil. N&#39;h&eacute;sitez pas &agrave; laisser un commentaire si vous avez eu l&#39;occasion de travailler avec, donnez-moi votre avis.</p>

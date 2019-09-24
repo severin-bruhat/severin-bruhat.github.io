@@ -1,0 +1,141 @@
+---
+layout: post
+status: publish
+published: true
+title: Quelques astuces pour MySQL
+author:
+  display_name: Séverin Bruhat
+  login: admin_sbr
+  email: sbruhat@gmail.com
+  url: http://severin-bruhat.com
+author_login: admin_sbr
+author_email: sbruhat@gmail.com
+author_url: http://severin-bruhat.com
+wordpress_id: 328
+wordpress_url: http://severin-bruhat.local/?p=328
+date: '2014-03-27 22:17:37 +0000'
+date_gmt: '2014-03-27 21:17:37 +0000'
+categories:
+- Blog
+tags:
+- PHP
+- performances
+- mysql
+comments: []
+---
+<p>
+	Je suis r&eacute;cemment tomb&eacute; sur cet&nbsp;article&nbsp;<a href="http://www.sitepoint.com/mysql-mistakes-php-developers" target="_blank">http://www.sitepoint.com/mysql-mistakes-php-developers</a>&nbsp;listant quelques bonnes pratiques concernant MySQL. J&#39;ai trouv&eacute; ce post int&eacute;ressant et souhaite donc le partager avec vous (l&#39;approche est un peu diff&eacute;rente de l&#39;article original).</p>
+<h2>
+	Utiliser InnoDB plut&ocirc;t que MyISAM<br />
+</h2>
+<p>
+	Par d&eacute;faut, lorsque vous cr&eacute;ez une base de donn&eacute;es MySQL, celle-ci est au format MyISAM, c&#39;est dommage ! En effet, MyISAM ne g&egrave;re ni les cl&eacute;s &eacute;trang&egrave;res, ni les transactions. MyISAM lock aussi compl&egrave;tement les tables en cas d&#39;insertion ou de mis &agrave; jour, ce qui est "s&eacute;curisant" mais co&ucirc;teux en terme de performance.</p>
+<p>
+	Pr&eacute;f&eacute;rez donc InnoDB qui pr&eacute;sente les avantages suivants :</p>
+<ul>
+<li>
+		mod&egrave;le ACID : atomicit&eacute;, coh&eacute;rence, isolation et durabilit&eacute; (plus performant que le syst&egrave;me de lock de MyISAM)
+	</li>
+<li>
+		supporte les transactions
+	</li>
+<li>
+		support les cl&eacute; &eacute;trang&egrave;res
+	</li>
+<li>
+		permet les sauvegardes &agrave; chaud
+	</li>
+</ul>
+<p>
+	C&#39;est bien connu : pas d&#39;avantages sans inconv&eacute;nients ! Ainsi, InnoDB est plus complexe &agrave; administrer que MyISAM. Vous trouverez la proc&eacute;dure permettant d&#39;activer le mode InnoDB par d&eacute;faut et de migrer vos table de MySIAM vers InnoDB <a href="https://docs.moodle.org/2x/fr/Migration_de_MyISAM_vers_InnoDB" target="_blank">ici</a>.</p>
+<h2>
+	Utiliser l&#39;extension PHP Mysqli<br />
+</h2>
+<p>
+	Depuis la version 4.1+ de mysql, il est pr&eacute;f&eacute;rable d&#39;utiliser mysqli (MySQL Improved)&nbsp;pour communiquer avec la base de donn&eacute;es. Les principaux avantages de cette extension sont les suivants :</p>
+<ul>
+<li>
+		interface (optionnelle) orient&eacute;e objet
+	</li>
+<li>
+		utilisation de requ&ecirc;tes pr&eacute;par&eacute;es &nbsp;: am&eacute;lioration de la s&eacute;curit&eacute; et des performances
+	</li>
+<li style="box-sizing: border-box; margin: 0px; padding: 0px; direction: ltr;">
+		support des transactions
+	</li>
+</ul>
+<p style="box-sizing: border-box; margin: 0px; padding: 0px; direction: ltr;">
+	Vous trouverez la documentation officielle &agrave; cette adresse :&nbsp;<a href="http://www.php.net/manual/fr/book.mysqli.php" target="_blank">http://www.php.net/manual/fr/book.mysqli.php</a>.</p>
+<h2>
+	S&eacute;curiser les inputs<br />
+</h2>
+<p>
+	Il est n&eacute;cessaire de valider toutes les variables re&ccedil;ues c&ocirc;t&eacute; PHP avant de les ins&eacute;rer dans une requ&ecirc;te afin de limiter les risques d&#39;injection SQL du type :</p>
+<pre>
+$username = $_POST["name"];
+$password = $_POST["password"];
+$sql = "SELECT userid FROM usertable WHERE username=&#39;$username&#39; AND password=&#39;$password&#39;;";
+// run query...
+</pre>
+<p>
+	Imaginons que $_POST["name"] ait pour valeur : "admin&#39;; --" la requ&ecirc;te envoy&eacute;e au serveur MySql sera la suivante :</p>
+<pre>
+SELECT userid FROM usertable WHERE username=&#39;admin&#39;;
+</pre>
+<p>
+	ET voil&agrave;, l&#39;utilisateur sera connect&eacute; en admin dans le cas d&#39;une requ&ecirc;te utilis&eacute;e pour une authentification. Il faut savoir que g&eacute;n&eacute;ralement, les frameworks et CMS g&egrave;rent automatiquement ce type d&#39;injection en &eacute;chappant certains caract&egrave;res par exemple. Si vous devez faire les tests manuellement, voici 2 petites actuces :</p>
+<ul>
+<li>
+		appliquer la m&eacute;thode&nbsp;mysql_real_escape_string() au chaines de caract&egrave;res
+	</li>
+<li>
+		v&eacute;rifier le entiers / num&eacute;riques gr&acirc;ce&nbsp;&agrave; la&nbsp;m&eacute;thode intval()
+	</li>
+</ul>
+<h2>
+	Utiliser UTF-8<br />
+</h2>
+<p>
+	Pensez &agrave; utiliser le <a href="http://dev.mysql.com/doc/refman/5.1/en/charset.html" target="_blank">charset utf-8</a>, notamment dans le cadre de projets multilingues.</p>
+<pre>
+CREATE DATABASE `mabase` CHARACTER SET utf8 COLLATE utf8_general_ci;
+</pre>
+<p>
+	Bon c&ocirc;t&eacute; PHP, vous allez me dire "oui mais moi avec ces histoires d&#39;encodage je gal&egrave;re &agrave; chaque fois", patience, PHP 6 devrait r&eacute;gler ce probl&egrave;me.</p>
+<h2>
+	Pr&eacute;f&eacute;rer un traitement SQL plut&ocirc;t que PHP<br />
+</h2>
+<p>
+	En tant que d&eacute;veloppeur, vous pr&eacute;f&egrave;rez coder une moyenne en PHP plut&ocirc;t que d&#39;utiliser la petite fonction AVG de MySQL ? Erreur, il est plus performant de traiter ce cas c&ocirc;t&eacute; MySQL. Songez donc &agrave; &eacute;tudier la documentations MySQL pour v&eacute;rifier s&#39;il est possible d&#39;effectuer les traitements dans la requ&ecirc;te. De la m&ecirc;me mani&egrave;re,&nbsp;&eacute;vitez&nbsp;les requ&ecirc;tes dans une boucle PHP.</p>
+<h2>
+	Optimiser&nbsp;les requ&ecirc;tes<br />
+</h2>
+<p>
+	99% des probl&egrave;mes de performance&nbsp;sont caus&eacute;s par la base de donn&eacute;es. La commande <a href="http://dev.mysql.com/doc/refman/5.1/en/using-explain.html" target="_blank">EXPLAIN </a>de MySQL(tutoriel <a href="http://www.sitepoint.com/using-explain-to-write-better-mysql-queries/" target="_blank">ici</a>)&nbsp;permet de visualiser le plan d&#39;ex&eacute;cution des requ&ecirc;tes, vous pourrez ainsi rep&eacute;rer les points bloquants. Des outils comme <a href="http://www.jetprofiler.com/fr/" target="_blank">Query Profiler</a>&nbsp;vous permettront &eacute;galement d&#39;optimiser vos requ&ecirc;tes et votre sch&eacute;ma.</p>
+<h2>
+	Utiliser le type&nbsp;de donn&eacute;e adapt&eacute;<br />
+</h2>
+<p>
+	Nous sommes souvent tent&eacute; de stocker des donn&eacute;es s&eacute;rialis&eacute;es dans un champ de type texte. Ceci est tr&egrave;s pratique mais peut s&#39;av&eacute;rer catastrophique en cas de forte volum&eacute;trie. Cette solution est donc &agrave; manipuler avec des pincettes, il est pr&eacute;f&eacute;rable d&#39;utiliser au maximum les types de champs propos&eacute;s par MySQL.</p>
+<h2>
+	Eviter le "SELECT *"<br />
+</h2>
+<p>
+	Souvent, seuls certains champs sont n&eacute;cessaires, il est donc inutile&nbsp;de tous les r&eacute;cup&eacute;rer. Vous devez donc, sp&eacute;cifier les champs &agrave; r&eacute;cup&eacute;rer un par un m&ecirc;me si vous les voulez tous. En effet, si par la suite de nouveaux champs sont ajout&eacute;s &agrave; la table, le "*" les remontera alors qu&#39;ils n&#39;&eacute;taient pas n&eacute;cessaires dans cette requ&ecirc;te.</p>
+<h2>
+	Manipuler les index raisonnablement<br />
+</h2>
+<p>
+	La r&egrave;gle de base pour positionner des index sur des tables est la suivante : toutes les colonnes aparaissant dans la clause WHERE de vos requ&ecirc;tes doivent&nbsp;avoir un index. On peut donc &ecirc;tre tent&eacute;&nbsp;d&#39;en positionner&nbsp;sur toutes les colonnes... surement pas ! En enffet, les index sont recalcul&eacute;s lors des op&eacute;rations INSERT et UPDATE, ceci provoquerait des&nbsp;probl&egrave;mes de performance.</p>
+<h2>
+	Sauvegarder<br />
+</h2>
+<p>
+	Assurer vous de mettre en place des backups de la base. Vous pouvez &eacute;galement mettre en place un syst&egrave;me de r&eacute;plication master / slave.<br />
+	Rappel : <a href="http://dev.mysql.com/doc/refman/5.1/en/mysqldump.html" target="_blank">mysqldump</a>&nbsp;permet d&#39;effectuer des sauvegardes en ligne de commande.</p>
+<p>
+	Si vous avez des remarques ou des compl&eacute;ments &agrave; apporter, n&#39;h&eacute;sitez pas &agrave; commenter cet article.</p>
+<p>
+	&nbsp;</p>
+<p>
+	&nbsp;</p>

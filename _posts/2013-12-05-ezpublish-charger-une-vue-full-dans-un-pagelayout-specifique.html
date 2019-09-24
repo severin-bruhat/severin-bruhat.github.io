@@ -1,0 +1,84 @@
+---
+layout: post
+status: publish
+published: true
+title: 'ezPublish : Charger une vue full dans un pagelayout sp&eacute;cifique'
+author:
+  display_name: Séverin Bruhat
+  login: admin_sbr
+  email: sbruhat@gmail.com
+  url: http://severin-bruhat.com
+author_login: admin_sbr
+author_email: sbruhat@gmail.com
+author_url: http://severin-bruhat.com
+wordpress_id: 200
+wordpress_url: http://severin-bruhat.local/?p=200
+date: '2013-12-05 00:26:39 +0000'
+date_gmt: '2013-12-04 23:26:39 +0000'
+categories:
+- Tutoriels
+tags:
+- ezPublish
+- pagelayout
+comments:
+- id: 7
+  author: neeko
+  author_email: neeko71@gmail.com
+  author_url: ''
+  date: '2013-12-13 13:07:50 +0000'
+  date_gmt: '2013-12-13 12:07:50 +0000'
+  content: "&ccedil;a me rappelle quelque chose ton article! mais gg c'est plut&ocirc;t
+    utile."
+- id: 8
+  author: S&eacute;verin Bruhat
+  author_email: sbruhat@gmail.com
+  author_url: ''
+  date: '2013-12-13 14:22:27 +0000'
+  date_gmt: '2013-12-13 13:22:27 +0000'
+  content: "<p>\n\tTu veux dire \"une semaine de gal&egrave;re&nbsp;? :D\n</p>\n"
+---
+<p>
+	Dans certains cas, avec ezPublish,&nbsp;il est n&eacute;cessaire d&#39;utiliser un pagelout sp&eacute;cifique pour, par exemple, ne pas afficher l&#39;ensemble du layout d&#39;une page ou utiliser un style css particulier. Aussi, dans le cadre d&#39;une&nbsp;requ&ecirc;te Ajax, il n&#39;est pas n&eacute;cessaire de retourner tout le code HTML du site, seul celui g&eacute;n&eacute;r&eacute; par le template concern&eacute; est requis (d&#39;ailleurs retourner la structure HTML compl&egrave;te de la page peut poser probl&egrave;me dans certains cas).</p>
+<p>
+	Pour parvenir &agrave; changer le pagelayout d&#39;une&nbsp;page, il faut tout d&#39;abord cr&eacute;er le pagelayout en question (specific_pagelayout.tpl dans notre exemple) dans le dossier "design" de votre extension. Ensuite,&nbsp;deux options sont possibles :</p>
+<ol>
+<li>
+		<strong>Si vous &ecirc;tes dans un module custom (d&eacute;velopp&eacute; par vos soins)</strong>
+	</li>
+</ol>
+<p>
+	Il vous suffit d&#39;ins&eacute;rer le code suivant dans le fichier PHP de votre module :</p>
+<pre class="php" style="font-family: 'Courier new', courier, monospace; font-size: 1.1em; background-color: rgb(250, 250, 250); margin-top: 0.75em; margin-bottom: 0.75em; padding: 0.25em; border: 1px dashed rgb(213, 213, 213); overflow: auto; color: rgb(51, 51, 53); line-height: normal; ">
+&nbsp;<span style="color: rgb(255, 0, 0); ">$Result</span><span style="color: rgb(102, 204, 102); ">[</span><span style="color: rgb(255, 0, 0); ">&#39;pagelayout&#39;</span><span style="color: rgb(102, 204, 102); ">]</span> <span style="color: rgb(102, 204, 102); ">=</span> <span style="color: rgb(255, 0, 0); ">&#39;design:specific_pagelayout.tpl&#39;</span><span style="color: rgb(102, 204, 102); ">;</span></pre>
+<ol start="2">
+<li>
+		<strong>Si vous utilisez le module content/view du kernel :&nbsp;</strong>
+	</li>
+</ol>
+<p>
+	Vous pouvez utiliser la vue "set" du module "layout". Cette vue permet de forcer le syst&egrave;me &agrave; utiliser un diff&eacute;rent pagelayout de celui par d&eacute;faut.<br />
+	Tout d&#39;abord, surchargez&nbsp;le fichier&nbsp;<span style="font-family: Arial, Helvetica, sans-serif; line-height: 16px; ">layout.ini (copiez&nbsp;le et renommez le en "layout.ini.apend.php") et ajouter les lignes suivantes :</span></p>
+<pre class="ezini" style="font-family: 'Courier new', courier, monospace; font-size: 1.1em; background-color: rgb(250, 250, 250); margin-top: 0.75em; margin-bottom: 0.75em; padding: 0.25em; border: 1px dashed rgb(213, 213, 213); overflow: auto; color: rgb(51, 51, 53); line-height: normal; ">
+<span style="color: rgb(102, 102, 102); font-style: italic; "># nom du layout</span>
+<span style="color: rgb(0, 0, 102); font-weight: bold; ">[specific_pagelayout]</span>
+<span style="color: rgb(102, 102, 102); font-style: italic; "># fichier du pagelayout</span>
+<span style="color: rgb(0, 0, 153); ">PageLayout</span><span style="color: rgb(0, 0, 102); font-weight: bold; ">=</span><span style="color: rgb(102, 0, 102); ">specific_pagelayout.tpl</span></pre>
+<p>
+	Pour charger une vue full avec ce pagelayout, appellez la via une URL du type : http://monDomaine/layout/set/<em>specific_pagelayout</em>/content/view/full/<em>nodeID.</em></p>
+<hr />
+<p>
+	Les applications sont multiples et vari&eacute;es, en voici quelques exemple :</p>
+<ul>
+<li>
+		appel Ajax
+	</li>
+<li>
+		ouverture d&#39;un template dans une popin/popup
+	</li>
+<li>
+		style CSS d&#39;impression
+	</li>
+<li>
+		version responsive design d&#39;une page sp&eacute;cifique
+	</li>
+</ul>

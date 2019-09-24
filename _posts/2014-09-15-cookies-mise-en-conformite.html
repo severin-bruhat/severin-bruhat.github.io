@@ -1,0 +1,94 @@
+---
+layout: post
+status: publish
+published: true
+title: 'Cookies : mise en conformit&eacute;'
+author:
+  display_name: Séverin Bruhat
+  login: admin_sbr
+  email: sbruhat@gmail.com
+  url: http://severin-bruhat.com
+author_login: admin_sbr
+author_email: sbruhat@gmail.com
+author_url: http://severin-bruhat.com
+wordpress_id: 552
+wordpress_url: http://severin-bruhat.local/?p=552
+date: '2014-09-15 12:34:57 +0100'
+date_gmt: '2014-09-15 11:34:57 +0100'
+categories:
+- Blog
+tags: []
+comments: []
+---
+<h2>
+	Recueil du consentement de l&#39;utilisateur<br />
+</h2>
+<p>
+	Depuis le 5 d&eacute;cembre 2013, une d&eacute;cision prise par la CNIL (<a href="http://www.cnil.fr/documentation/deliberations/deliberation/delib/300/" target="_blank">d&eacute;lib&eacute;ration n&deg;2013-378</a>)&nbsp;oblige les &eacute;diteurs &agrave; mettre en place sur leur site un m&eacute;canisme d&#39;acceptation des cookies &agrave; destination des visiteurs. La CNIL obligeait d&eacute;j&agrave; &agrave; recueillir le consentement du&nbsp;visiteur pour l&#39;utilisation de certains cookies, mais depuis <a href="http://www.cnil.fr/documentation/deliberations/deliberation/delib/300/" target="_blank">cette d&eacute;lib&eacute;ration officielle</a>, le champ d&#39;application est beaucoup plus large et concerne notamment les boutons de partage sociaux, l&#39;affichage des publicit&eacute;s&nbsp;et l&#39;utilisation d&#39;outils de tracking (Google analytics par exemple, PIWIK &eacute;tant &eacute;pargn&eacute;).</p>
+<p>
+	Autant dire, qu&#39;aujourd&#39;hui, la quasi totalit&eacute; des sites est concern&eacute;e. Comme tout internaute, vous avez du remarquer&nbsp;la mise en place progressive d&#39;une notification sur vos sites favoris, vous demandant d&#39;acc&eacute;pter l&#39;utilisation de cookies pour activer les boutons de partage ou d&#39;autres fonctionnalit&eacute;s.</p>
+<h2>
+	Dans quel cas dois-je mettre en place un&nbsp;m&eacute;canisme de recueil du consentement ?<br />
+</h2>
+<p>
+	Voici les cas&nbsp;&eacute;nonc&eacute;s par la CNIL :</p>
+<ul>
+<li>
+		les cookies li&eacute;s aux op&eacute;rations relatives &agrave; la publicit&eacute;
+	</li>
+<li>
+		les cookies des r&eacute;seaux sociaux g&eacute;n&eacute;r&eacute;s par les boutons de partage de r&eacute;seaux sociaux lorsqu&#39;ils collectent des donn&eacute;es personnelles sans consentement des personnes concern&eacute;es
+	</li>
+<li>
+		certains cookies de mesure d&#39;audience (dont Google Analytics)
+	</li>
+</ul>
+<p>
+	Certains cookies sont excempts :</p>
+<ul>
+<li>
+		les cookies de " panier d&#39;achat " pour un site marchand
+	</li>
+<li>
+		les cookies " identifiants de session ", pour la dur&eacute;e d&#39;une session, ou les cookies persistants limit&eacute;s &agrave; quelques heures dans certains cas
+	</li>
+<li>
+		les cookies d&#39;authentification
+	</li>
+<li>
+		les cookies de session cr&eacute;&eacute;s par un lecteur multim&eacute;dia
+	</li>
+<li>
+		les cookies de session d&#39;&eacute;quilibrage de charge (" load balancing ")
+	</li>
+<li>
+		certaines solutions d&#39;analyse de mesure d&#39;audience (analytics)
+	</li>
+<li>
+		les cookies persistants de personnalisation de l&#39;interface utilisateur
+	</li>
+</ul>
+<p>
+	Vous trouverez plus d&#39;informations sur le site de la <a href="http://www.cnil.fr/vos-obligations/sites-web-cookies-et-autres-traceurs/" target="_blank">CNIL</a></p>
+<h2>
+	Comment mettre en place un m&eacute;canisme de recueil du consentement ?<br />
+</h2>
+<p>
+	Attention, le consentement doit &ecirc;tre pr&eacute;alable &agrave; l&#39;insertion ou &agrave; la lecture de cookies, donc tant que le visiteur n&#39;a pas accept&eacute; les cookies, les boutons de partage et autres fonctionnalit&eacute;s concern&eacute;es doivent &ecirc;tre d&eacute;sactiv&eacute;s. Je ne citerai personne, mais aujourd&#39;hui peu de sites respectent ce mode de fonctionnement, seul un bandeau (plus ou moins intrusif) est visible jusqu&#39;&agrave; acceptation. Cette nouvelle loi est bien sympa, mais vous l&#39;aurez compris, en tant que d&eacute;veloppeur, c&#39;est du boulot suppl&eacute;mentaire. Alors comment faire ?</p>
+<p>
+	Concernant les boutons de partage, il existe un script permettant de g&eacute;rer efficacement la demande de consentement ; ce <a href="http://panzi.github.io/SocialSharePrivacy/" target="_blank">script</a>&nbsp;est recommand&eacute; par la CNIL. Vous trouverez &eacute;galement des plugins pour vos CMS favoris &agrave; <a href="http://www.cnil.fr/vos-obligations/sites-web-cookies-et-autres-traceurs/outils-et-codes-sources/les-boutons-sociaux/" target="_blank">cette adresse</a>.<br />
+	Pour ce qui est du recueil du consentement g&eacute;n&eacute;ral et de l&#39;affihage des condiftions ("en savoir plus"), voici ce que propose la CNIL :</p>
+<div style="color: rgb(0, 0, 0); font-family: Arial, Helvetica, sans-serif; line-height: normal; border: 1px solid rgb(204, 204, 204); background-color: rgb(251, 220, 191); margin: 10px; padding: 10px;">
+<p style="margin: 0px; padding: 0px 0px 12px; font-size: 1.083em; color: rgb(44, 44, 40);">
+		<span style="font-weight: bold;">En poursuivant votre navigation sur ce site, vous acceptez l&rsquo;utilisation de&nbsp;</span><span style="font-style: italic;">[ Cookies ou autres traceurs ]</span><span style="font-weight: bold;">pour vous proposer&nbsp;</span><span style="font-style: italic;">[Par exemple, des publicit&eacute;s cibl&eacute;es adapt&eacute;s &agrave; vos centres d&rsquo;int&eacute;r&ecirc;ts]</span>&nbsp;<span style="font-weight: bold;">et&nbsp;</span><span style="font-style: italic;">[ Par exemple, r&eacute;aliser des statistiques de visites]</span>.
+	</p>
+<p style="margin: 0px; padding: 0px 0px 12px; font-size: 1.083em; color: rgb(44, 44, 40);">
+		<a class="lien" href="http://www.cnil.fr/vos-obligations/sites-web-cookies-et-autres-traceurs/que-dit-la-loi/vos-obligations/sites-web-cookies-et-autres-traceurs/que-dit-la-loi/" style="color: rgb(218, 27, 97); text-decoration: none; outline: none; font-weight: bold; display: block; background-image: url(http://www.cnil.fr/fileadmin/templates/images/img/picto_lien_rose.png); background-color: transparent; padding-left: 18px; background-position: 0% 50%; background-repeat: no-repeat no-repeat;" target="_top">Pour en savoir plus et param&eacute;trer les traceurs</a>
+	</p>
+</div>
+<p>
+	Vous trouverez plus d&#39;informations sur la mise en place du m&eacute;canisme de recueil du consentement ici :&nbsp;<a href="http://www.cnil.fr/vos-obligations/sites-web-cookies-et-autres-traceurs/outils-et-codes-sources/" style="font-family: sans-serif, Arial, Verdana, 'Trebuchet MS'; font-size: 13px; line-height: 1.6em;" target="_blank">http://www.cnil.fr/vos-obligations/sites-web-cookies-et-autres-traceurs/outils-et-codes-sources/</a></p>
+<p>
+	Voil&agrave;, maintenant que vous &ecirc;tes au courant (si vous ne l&#39;&eacute;tiez pas d&eacute;j&agrave;), vous n&#39;avez plus d&#39;excuse pour ne pas mettre en place ceci. Pour ma part, j&#39;envisage d&#39;&eacute;crire un&nbsp;script "g&eacute;n&eacute;rique" qui permettrait de rapidement mettre en place ce m&eacute;canisme sur les projets sur lesquels je travaille (les anciens ainsi que les futurs).&nbsp;</p>
+<p>
+	&nbsp;</p>

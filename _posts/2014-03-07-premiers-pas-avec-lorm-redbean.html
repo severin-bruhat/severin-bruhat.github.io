@@ -1,0 +1,142 @@
+---
+layout: post
+status: publish
+published: true
+title: Premiers pas avec l'ORM Redbean
+author:
+  display_name: Séverin Bruhat
+  login: admin_sbr
+  email: sbruhat@gmail.com
+  url: http://severin-bruhat.com
+author_login: admin_sbr
+author_email: sbruhat@gmail.com
+author_url: http://severin-bruhat.com
+wordpress_id: 315
+wordpress_url: http://severin-bruhat.local/?p=315
+date: '2014-03-07 23:20:30 +0000'
+date_gmt: '2014-03-07 22:20:30 +0000'
+categories:
+- Tutoriels
+tags:
+- PHP
+- ORM
+- RedBean
+comments:
+- id: 340
+  author: OUATHAM
+  author_email: basopro1@gmail.com
+  author_url: ''
+  date: '2016-07-20 16:38:55 +0100'
+  date_gmt: '2016-07-20 15:38:55 +0100'
+  content: "\r\n\tSuper. merci pour cepartage.\r\n\r\n\r\n\r\n\t1. quels sont les
+    lients utiles ( FR de preferences, sinon EN)&nbsp;que vous nous coneillez?\r\n\r\n\r\n\r\n\tJ&#039;ai
+    decid&eacute; d&#039;utiliser RedBean dans Slim pour developper une application
+    de gestion et generation des statistiques.\r\n\r\n\r\n\r\n\tje suis donc a la
+    recherchre de resources FR pour bien demarrer...\r\n\r\n\r\n\r\n\t2. J&#039;ai
+    deja une base de donn&eacute;es deja existante et fonction avec une application
+    PHP standar, Comment reutiliser cette meme base de donn&eacute;es avec RedBean&nbsp;&nbsp;sans
+    toute fois la recreer avec RedBean?\r\n\r\n\r\n\r\n\t3. RedBean est elle cacapble
+    de faire de grosse requettes e jointure ( INNER JOIN? LEFT JOIN, RIGHT JOIN,..)
+    avec des fonction SQL telles que : SUM, COUNT, ....?\r\n\r\n\r\n\r\n\t&nbsp;\r\n"
+- id: 341
+  author: S&eacute;verin Bruhat
+  author_email: sbruhat@gmail.com
+  author_url: http://severin-bruhat.com
+  date: '2016-07-21 16:30:36 +0100'
+  date_gmt: '2016-07-21 15:30:36 +0100'
+  content: "<p>\r\n\tBonjour,\r\n</p>\r\n\r\n<p>\r\n\tJ&#39;ai test&eacute;&nbsp;RedBean
+    &agrave; l&#39;&eacute;poque de ce tutoriel mais c&#39;&eacute;tait il y a longtemps.\r\n</p>\r\n\r\n<p>\r\n\tJe
+    ne suis pas un expert, aujourd&#39;hui je travaille avec Doctrine et ne suis pas
+    &agrave; m&ecirc;me de r&eacute;pondre &agrave; vos questions.\r\n</p>\r\n\r\n<p>\r\n\tBonne
+    continuation\r\n</p>"
+---
+<h2>
+	Pr&eacute;sentation<br />
+</h2>
+<p>
+	<a href="http://redbeanphp.com/" target="_blank">RedBean </a>est un ORM (object-relational mapping) PHP. Il permet, comme tout ORM, de convertir les donn&eacute;es relationnelles en objets et vice-versa. Il existe pl&eacute;thore d&#39;outils de ce style, nous pouvons citer par exemple <a href="http://www.doctrine-project.org/" target="_blank">Doctrine </a>(un des plus connus, notamment utilis&eacute; avec Smfony), <a href="http://www.phpobjectgenerator.com/" onclick="window.open(this.href, '', 'resizable=no,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no'); return false;">POG </a>(PHP Object Generator) et <a href="http://propelorm.org/" target="_blank">Propel</a>.&nbsp;</p>
+<p>
+	Le principe de fonctionnement est le suivant :</p>
+<p>
+	<a href="http://severin-bruhat.local/wp-content/uploads/2014/02/Untitled.png" rel="" style="" target="" title=""><img alt="ORM" class="size-medium wp-image-319 aligncenter" height="273" src="http://severin-bruhat.local/wp-content/uploads/2014/02/Untitled-300x273.png" style="" title="" width="300" /></a></p>
+<p>
+	L&#39;ORM est capable de g&eacute;n&eacute;rer des objets (manipulables en PHP) &agrave; partir du sch&eacute;ma de la base de donn&eacute;es. Les objets ainsi cr&eacute;&eacute;s disposent d&#39;attributs (champs de la base) et de m&eacute;thodes (<a href="http://fr.wikipedia.org/wiki/CRUD">CRUD</a>). Ce type d&#39;outil permet&nbsp;<span style="line-height: 1.6em;">d&#39;interagir&nbsp;rapidement et facilement avec la base de donn&eacute;es. Redbean poss&egrave;de un gros avantage : il est capable de cr&eacute;er le sch&eacute;ma directement depuis le code PHP, nous aborderons cet aspect&nbsp;dans ce tutoriel.</span></p>
+<h2>
+	Un peu de pratique<br />
+</h2>
+<p>
+	Tout d&#39;abord il faut importer redbean dans votre projet. T&eacute;l&eacute;chargez&nbsp;les sources sur le <a href="http://redbeanphp.com/welcome#download" target="_blank">site officiel de Redbean</a>&nbsp;et ajoutez&nbsp;le fichier (php ou&nbsp;phar en fonction des versions) &agrave; votre projet :</p>
+<pre>
+require &#39;rb.php&#39;;
+</pre>
+<p>
+	Vous pouvez maintenant commencer &agrave; jouer avec Redbean ! Configurez&nbsp;la base de donn&eacute;es (cr&eacute;&eacute;e au pr&eacute;alable) :</p>
+<pre>
+ R::setup(&#39;mysql:host=localhost;dbname=redbean_test&#39;,&#39;user&#39;,&#39;pwd&#39;);
+</pre>
+<p>
+	Pour ce petit tutoriel nous allons cr&eacute;er une application permettant de g&eacute;rer des utilisateurs et&nbsp;des notes. Le but &eacute;tant ici de manipuler Redbean, aucune interface visuelle ne sera d&eacute;velopp&eacute;e, nous nous concentrerons simplement sur quelques extraits de code PHP.</p>
+<p>
+	Comme dit pr&eacute;c&eacute;dement, avec redbean, nous n&#39;avons&nbsp;pas besoin de cr&eacute;er les tables directement dans la base de donn&eacute;es. Ainsi, le code suivant va nous permettre de cr&eacute;er un utilisateur et donc, la table associ&eacute;e :</p>
+<pre>
+$utilisateur = R::dispense(&#39;utilisateur&#39;);
+$utilisateur->nom = &#39;Bosse&#39;;
+$utilisateur->prenom = &#39;Hugo&#39;;
+$idUser = R::store( $utilisateur )
+</pre>
+<p>
+	Quelques explications :</p>
+<ul>
+<li>
+		La m&eacute;thode "dispense" permet de cr&eacute;er un nouveau "bean", autrement dit un nouvel objet
+	</li>
+<li>
+		La m&eacute;thode "store" permet d&#39;enregistrer le "bean"
+	</li>
+</ul>
+<p>
+	<span style="line-height: 1.6em;">Une fois le code pr&eacute;c&eacute;dent ex&eacute;cut&eacute;, consultez votre sch&eacute;ma de base de donn&eacute;es, et l&agrave;, surprise (ou pas, si vous avez suivi ^^) &nbsp;:</span></p>
+<p>
+	<a href="http://severin-bruhat.local/wp-content/uploads/2014/03/database.png"><img alt="database" class="aligncenter size-full wp-image-370" height="44" src="http://severin-bruhat.local/wp-content/uploads/2014/03/database.png" width="194" /></a></p>
+<p>
+	Cr&eacute;ons maintenant une note &agrave; l&#39;aide du code suivant :</p>
+<pre>
+$note = R::dispense(&#39;note&#39;);
+$note->title = &#39;Titre de la note&#39;;
+$note->content = "<p>Lorem ipsum</p>";
+$id = R::store( $note );
+</pre>
+<p>
+	Nous disposons &agrave; pr&eacute;sent de deux&nbsp;objets : un utilisateur et une note. Nous allons donc voir comment lier ces deux objets via une relation de type "one-to-many" :</p>
+<pre>
+$utilisateur = R::load(&#39;utilisateur&#39;, 1);
+$note = R::load(&#39;note&#39;, 1);
+$utilisateur->ownNoteList[] = $note;
+R::store( $utilisateur );
+</pre>
+<p>
+	<span style="font-size: 13px;">Quelques explications :</span></p>
+<ul>
+<li>
+		La m&eacute;thode "load" permet de charger les objets
+	</li>
+<li>
+		L&#39;attribut "ownNoteList[]" permet de lier la note&nbsp;&agrave;&nbsp;l&#39;utilisateur&nbsp;
+	</li>
+<li>
+		La m&eacute;thode "store" permet de mettre &agrave; jour les enregistrements
+	</li>
+</ul>
+<p>
+	Voici ce que l&#39;on obtient au niveau de la table "note" :&nbsp;</p>
+<p>
+	<a href="http://severin-bruhat.local/wp-content/uploads/2014/03/note2.png"><img alt="note" class="aligncenter size-medium wp-image-373" height="32" src="http://severin-bruhat.local/wp-content/uploads/2014/03/note2-300x32.png" width="300" /></a></p>
+<p>
+	On remarque qu&#39;un nouveau champ permettant de stocker l&#39;identifiant de l&#39;utilisateur est apparu dans la table (relation de type one-to-many). Le mot cl&eacute; "own" (<span style="font-size: 13px;">ownNoteList)</span> est obligatoire et permet d&#39;illustrer la notion de possession (relation). Vous trouverez plus d&#39;informations sur les relations dans la <a href="http://redbeanphp.com/relations" target="_blank">documentation officielle</a>.</p>
+<p>
+	Une fois votre d&eacute;veloppement termin&eacute;, il est n&eacute;cessaire de "bloquer" la mise &agrave; jour du sch&eacute;ma gr&acirc;ce &agrave; la m&eacute;thode suivante :</p>
+<pre>
+R::freeze( TRUE );
+</pre>
+<p>
+	Cette petite introduction &agrave; Redbean est termin&eacute;e. Pour conclure, je dirai qu&#39;il s&#39;agit d&#39;un outil simple &agrave; manipuler. Il peut &ecirc;tre utile notamment&nbsp;pour mettre en place&nbsp;un prototype car il n&#39;est pas n&eacute;cessaire de g&eacute;rer le sch&eacute;ma de la base de donn&eacute;es. En revanche, dans le cadre d&#39;une application destin&eacute;e &agrave; la mise en production, il est indispensable de faire une passe sur le sch&eacute;ma afin de l&#39;optimiser (index, cl&eacute;s...).</p>

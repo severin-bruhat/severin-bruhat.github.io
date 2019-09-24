@@ -1,0 +1,197 @@
+---
+layout: post
+status: publish
+published: true
+title: 'PHP : bonnes pratiques et conventions'
+author:
+  display_name: Séverin Bruhat
+  login: admin_sbr
+  email: sbruhat@gmail.com
+  url: http://severin-bruhat.com
+author_login: admin_sbr
+author_email: sbruhat@gmail.com
+author_url: http://severin-bruhat.com
+wordpress_id: 427
+wordpress_url: http://severin-bruhat.local/?p=427
+date: '2014-05-21 20:20:50 +0100'
+date_gmt: '2014-05-21 19:20:50 +0100'
+categories:
+- Blog
+tags:
+- PHP
+- conventions
+- industrialisation
+comments:
+- id: 370
+  author: Michel
+  author_email: toto@mail.fr
+  author_url: ''
+  date: '2018-02-12 11:21:02 +0000'
+  date_gmt: '2018-02-12 10:21:02 +0000'
+  content: "\r\n\tEn effet, un projet PHP qui repsecte les normes\r\n\r\n\r\n\r\n\t&nbsp;\r\n\r\n\r\n\r\n\tPetite
+    coquille...\r\n"
+- id: 371
+  author: S&eacute;verin Bruhat
+  author_email: sbruhat@gmail.com
+  author_url: http://severin-bruhat.com
+  date: '2018-02-12 13:25:09 +0000'
+  date_gmt: '2018-02-12 12:25:09 +0000'
+  content: "<p>\n\tC'est corrig&eacute; merci ;)\n</p>"
+---
+<h2>
+	Introduction<br />
+</h2>
+<p>
+	L&#39;&eacute;cosyst&egrave;me PHP est vaste et complet : beaucoup d&#39;outils, frameworks et CSM sont disponibles, la communaut&eacute; est importante et active, les entreprisent recrutent, les clients sont nombreux.... Dans un monde faisant intervenir autant d&#39;acteurs, il est important de suivre certaines "normes" afin d&#39;assurer la p&eacute;r&eacute;nit&eacute; des projets (et du langage). Ces conventions ont pour but de fournir des bonnes pratiques afin d&#39;homog&eacute;n&eacute;iser les d&eacute;veloppements et de simplifier la maintenabilit&eacute; du code. En effet, un projet PHP qui respecte les normes&nbsp;est plus facile &agrave; prendre en main par un nouveau d&eacute;veloppeur et ainsi plus simple &agrave; maintenirqu&#39;un projet ne les respectant pas.</p>
+<p>
+	Il existe 3 grands standards PHP :</p>
+<ul>
+<li>
+		<a href="https://pear.php.net/manual/en/standards.php" style="line-height: 1.6em;" target="_blank">PEAR</a><span style="line-height: 1.6em;">&nbsp;</span>
+	</li>
+<li>
+		<a href="http://framework.zend.com/manual/1.12/fr/coding-standard.html" style="line-height: 1.6em;" target="_blank">Zend</a>
+	</li>
+<li>
+		<a href="http://www.php-fig.org/psr/" style="line-height: 1.6em;" target="_blank">PSR</a>
+	</li>
+</ul>
+<p>
+	Je vais, dans cet article, parler de la convention PSR qui tend &agrave; devenir le standard respect&eacute; par <a href="http://symfony.com/" target="_blank">Symfony</a> notamment.&nbsp;</p>
+<h2>
+	Les normes PSR<br />
+</h2>
+<h3>
+	PSR-0 : autoloading<br />
+</h3>
+<p>
+	L&#39;objectif de la <a href="http://www.php-fig.org/psr/psr-0/fr/" target="_blank">PSR-0</a>&nbsp;est de rendre standard le chargement des classes afin d&#39;&eacute;viter les "include" et "require". Ce syst&egrave;me d&#39;autoloading repose sur la bonne utilisation des namespaces. Voici la liste des principales r&egrave;gles :</p>
+<ul>
+<li>
+		Les classes et les espaces de noms enti&egrave;rement qualifi&eacute;s doivent disposer de la structure suivante\<Nom du Vendor>\(<Espace de noms>\)*<Nom de la Classe>.
+	</li>
+<li>
+		Chaque espace de noms doit avoir un espace de noms racine. ("Nom du Vendor").
+	</li>
+<li>
+		Chaque espace de noms peut avoir autant de sous-espaces de noms qu&#39;il le souhaite.
+	</li>
+<li>
+		Chaque s&eacute;parateur d&#39;un espace de noms est converti en&nbsp;DIRECTORY_SEPARATOR&nbsp;lors du chargement &agrave; partir du syst&egrave;me de fichiers.
+	</li>
+<li>
+		Chaque "_" dans le nom d&#39;une CLASSE est converti en&nbsp;DIRECTORY_SEPARATOR. Le caract&egrave;re "_" n&#39;a pas de signification particuli&egrave;re dans un espace de noms.
+	</li>
+<li>
+		Les classes et espaces de noms compl&egrave;tement qualifi&eacute;s sont suffix&eacute;s avec ".php" lors du chargement &agrave; partir du syst&egrave;me de fichiers.
+	</li>
+<li>
+		Les caract&egrave;res alphab&eacute;tiques dans les noms de vendors, espaces de noms et noms de classes peuvent contenir n&#39;importe quelle combinaison de minuscules et de majuscules.
+	</li>
+</ul>
+<p>
+	Le fichier d&#39;autoload g&eacute;n&eacute;r&eacute; est par <a href="https://getcomposer.org/" target="_blank">Composer</a>, par exemple, respecte cette norme.</p>
+<h3>
+	PSR-1 :&nbsp;La norme de codage de base<br />
+</h3>
+<p>
+	La <a href="http://www.php-fig.org/psr/psr-1/fr/" target="_blank">PSR-1</a>&nbsp;&nbsp;d&eacute;crit les &eacute;l&eacute;ments standards de codage n&eacute;cessaires pour assurer un niveau &eacute;lev&eacute; d&#39;interop&eacute;rabilit&eacute; technique pour le partage du code PHP. Cette norme concerne&nbsp;:&nbsp;les fichiers,&nbsp;les espaces de nom et noms des classes ainsi que&nbsp;les constantes de classe, propri&eacute;t&eacute;s et m&eacute;thodes :</p>
+<ul>
+<li>
+		Les fichiers DOIVENT utiliser seulement les tags&nbsp;<?php&nbsp;et&nbsp;<?=.
+	</li>
+<li>
+		Les fichiers de code PHP DOIVENT &ecirc;tre encod&eacute;s uniquement en UTF-8 sans BOM.
+	</li>
+<li>
+		Les fichiers DEVRAIENT&nbsp;soit&nbsp;d&eacute;clarer des symboles (classes, fonctions, constantes, etc.)&nbsp;soitcauser des effets secondaires (par exemple, g&eacute;n&eacute;rer des sorties, modifier param&egrave;tres .ini), mais NE DOIVENT PAS faire les deux.
+	</li>
+<li>
+		Les espaces de noms et les classes DOIVENT suivre&nbsp;PSR-0.
+	</li>
+<li>
+		Les noms des classes DOIVENT &ecirc;tre d&eacute;clar&eacute;s comme&nbsp;StudlyCaps.
+	</li>
+<li>
+		Les constantes de classe DOIVENT &ecirc;tre d&eacute;clar&eacute;es en majuscules avec un sous-tiret en s&eacute;parateurs.
+	</li>
+<li>
+		Les noms des m&eacute;thodes DOIVENT &ecirc;tre d&eacute;clar&eacute;s comme&nbsp;camelCase.
+	</li>
+</ul>
+<p>
+	Vous trouverez des exemples concrets ici :&nbsp;<a href="http://www.php-fig.org/psr/psr-1/fr/" target="_blank">http://www.php-fig.org/psr/psr-1/fr/</a>.<br />
+	<span style="line-height: 1.6em;">Personnellement je trouve que cette r&egrave;gle est importante est doit &ecirc;tre respect&eacute;e au maximum car elle am&eacute;liore la lisibilit&eacute; du code.</span></p>
+<h3>
+	PSR-2 :&nbsp;Guide pour le style d&#39;&eacute;criture de code<br />
+</h3>
+<p>
+	La norme <a href="http://www.php-fig.org/psr/psr-2/fr/" target="_blank">PSR-2</a>&nbsp;compl&egrave;te la PSR-1 et d&eacute;crit les bonnes pratiques en mati&egrave;re de programmation. Vous trouverez ci-dessous la vue d&#39;ensemble des points d&eacute;crit dans la documentation officielle :</p>
+<ul>
+<li>
+		Le code DOIT suivre les&nbsp;PSR-1.
+	</li>
+<li>
+		Le code DOIT utiliser 4 espaces pour l&#39;indentation et aucune tabulation.
+	</li>
+<li>
+		Il NE DOIT PAS exister une limite stricte sur la longueur de la ligne, la limite acceptable DOIT &ecirc;tre de 120 caract&egrave;res; les lignes DEVRAIENT comprendre 80 caract&egrave;res ou moins.
+	</li>
+<li>
+		Il DOIT y avoir une ligne vide apr&egrave;s la d&eacute;claration de&nbsp;l&#39;espace de noms, et il &nbsp;&nbsp;DOIT y avoir une ligne vide apr&egrave;s le bloc de d&eacute;clarations&nbsp;use.
+	</li>
+<li>
+		L&#39;ouverture des accolades pour les classes DOIT figurer sur la ligne suivante, les accolades de fermeture DOIVENT figurer sur la ligne suivante apr&egrave;s le corps de la classe.
+	</li>
+<li>
+		L&#39;ouverture des accolades pour les m&eacute;thodes DOIT figurer sur la ligne suivante, les accolades de fermeture DOIVENT figurer sur la ligne suivante apr&egrave;s le corps de la m&eacute;thode.
+	</li>
+<li>
+		La visibilit&eacute; DOIT &ecirc;tre d&eacute;clar&eacute;e sur toutes les propri&eacute;t&eacute;s et m&eacute;thodes;&nbsp;abstract&nbsp;et&nbsp;finaldoivent &ecirc;tre d&eacute;clar&eacute;s avant la visibilit&eacute;;&nbsp;static&nbsp;DOIT &ecirc;tre d&eacute;clar&eacute; apr&egrave;s la visibilit&eacute;.
+	</li>
+<li>
+		La structure des mots-cl&eacute;s de contr&ocirc;le DOIT avoir un espace apr&egrave;s eux, les m&eacute;thodes et les appels de fonction NE DOIVENT PAS en avoir.
+	</li>
+<li>
+		L&#39;ouverture des accolades pour les structures de contr&ocirc;le DOIT figurer sur la m&ecirc;me ligne, et la fermeture des accolades DOIT figurer sur la ligne suivante apr&egrave;s le corps.
+	</li>
+<li>
+		l&#39;ouverture des parenth&egrave;ses pour les structures de contr&ocirc;le NE DOIT PAS contenir d&#39;espace apr&egrave;s eux, la fermeture de parenth&egrave;ses pour les structures de contr&ocirc;le NE DOIT PAS contenir d&#39;espace avant.
+	</li>
+</ul>
+<p>
+	Cette convention est souvent controvers&eacute;e car elle est consid&eacute;r&eacute;e comme trop "rigide". De mon point de vue, il faut adopter une r&egrave;gle est la respecter. Ainsi, si vous intervenez sur des projets d&eacute;j&agrave; avanc&eacute;s, calquez vous sur ce qui est d&eacute;j&agrave; en place (notamment pour les accolades et&nbsp;l&#39;indentation). Le principal &eacute;tant simplement de rester coh&eacute;rent avec l&#39;impl&eacute;mentation d&eacute;j&agrave; effectu&eacute;e et la m&eacute;thodologie adopt&eacute;e par les d&eacute;veloppeurs travaillant sur le projet.</p>
+<h3>
+	PSR-3 : Interface pour les logs<br />
+</h3>
+<p>
+	L&#39;objectif de la PSR-3 est de d&eacute;finir comment seront g&eacute;r&eacute;s les logs de votre application. Comme dans la majorit&eacute; des cas vous utilisez une librairie d&eacute;di&eacute;e au log, le plus simple est d&#39;en choisir une r&eacute;pondant &agrave; cette norme ;) telle que&nbsp;<a href="https://github.com/Seldaek/monolog" target="_blank">Monolog</a> par exemple. Voici les concepts de base :</p>
+<ul>
+<li>
+		L&#39;interface&nbsp;LoggerInterface&nbsp;expose huit m&eacute;thodes pour &eacute;crire les logs pour les huit&nbsp;RFC 5424levels (debug, info, notice, warning, error, critical, alert, emergency).
+	</li>
+<li>
+		Un neuvi&egrave;me m&eacute;thode,&nbsp;log, accepte un niveau de journalisation en tant que premier argument. L&#39;appel de cette m&eacute;thode avec l&#39;une des constantes du niveau de journalisation DOIT avoir le m&ecirc;me r&eacute;sultat que l&#39;appel de la m&eacute;thode de niveau sp&eacute;cifique. L&#39;appel de cette m&eacute;thode avec un niveau non d&eacute;fini par cette sp&eacute;cification DOIT lancer un&nbsp;Psr\Log\InvalidArgumentException&nbsp;si l&#39;impl&eacute;mentation ne reconna&icirc;t pas le niveau. Les utilisateurs NE DEVRAIENT PAS utiliser de niveau personnalis&eacute; sans savoir avec certitude si l&#39;impl&eacute;mentation le supporte.
+	</li>
+</ul>
+<h3>
+	PSR-4 : autoloading avanc&eacute;<br />
+</h3>
+<p>
+	Cette norme compl&egrave;te la PSR-0. Alors que cette derni&egrave;re se concentre principalement sur les namespaces et noms de classes, la PSR-4 fixe des r&egrave;gles concernant l&#39;arborescence des fichiers. Vous trouverez plus d&#39;informations ici :&nbsp;<a href="http://www.php-fig.org/psr/psr-4/" target="_blank">http://www.php-fig.org/psr/psr-4/</a>.</p>
+<p>
+	Le fichier d&#39;autoload g&eacute;n&eacute;r&eacute; par <a href="https://getcomposer.org/" target="_blank">Composer</a>, par exemple, respecte &eacute;galement cette norme (en plus de la PSR-0).</p>
+<h2>
+	Quelques outils<br />
+</h2>
+<p>
+	<a href="http://cs.sensiolabs.org" target="_blank">PHP Coding Standards Fixer</a>&nbsp;: d&eacute;velopp&eacute; parSensio Labs (Symfony) pour passer du code aux normes PSR</p>
+<p>
+	<a href="https://github.com/duodraco/phpcs-psr" target="_blank">https://github.com/duodraco/phpcs-psr</a>&nbsp;: un jeu de r&egrave;gles pour PHP Code Sniffer (<a href="http://pear.php.net/package/PHP_CodeSniffer" target="_blank">phpcs</a>)</p>
+<h2>
+	Conclusion<br />
+</h2>
+<p>
+	Dans le cadre d&#39;un processus d&#39;int&eacute;gration continu, vous pouvez envisager d&#39;utiliser les hook de pr&eacute;-commit afin de forcer les d&eacute;veloppeurs &agrave; respecter certaines des conventions ci-dessus. Ainsi, si le code n&#39;est pas "PSR compliant", &nbsp;le d&eacute;veloppeur devra l&#39;adapter afin de pouvoir commiter.</p>
+<p>
+	Cet article est une simple introduction &agrave; la norme PSR. Si vous &ecirc;tes pour ou contre les conventions, si vous souhaitez apporter des informations compl&eacute;mentaires, si vous pr&eacute;f&eacute;rez une autre convention que la PSR ou bien tout simplement si vous souhaitez vous exprimez : laissez un petit commentaire ci-dessous.</p>

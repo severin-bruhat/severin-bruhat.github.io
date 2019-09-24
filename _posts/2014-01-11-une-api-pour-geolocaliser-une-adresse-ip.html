@@ -1,0 +1,59 @@
+---
+layout: post
+status: publish
+published: true
+title: Une API pour g&eacute;olocaliser une adresse IP
+author:
+  display_name: Séverin Bruhat
+  login: admin_sbr
+  email: sbruhat@gmail.com
+  url: http://severin-bruhat.com
+author_login: admin_sbr
+author_email: sbruhat@gmail.com
+author_url: http://severin-bruhat.com
+wordpress_id: 249
+wordpress_url: http://severin-bruhat.local/?p=249
+date: '2014-01-11 10:06:26 +0000'
+date_gmt: '2014-01-11 09:06:26 +0000'
+categories:
+- Tutoriels
+tags:
+- PHP
+- G&eacute;olocalisation
+- IP
+- freegeoip
+comments: []
+---
+<p>
+	<a href="http://freegeoip.net/" style="box-sizing: border-box; color: rgb(66, 139, 202); text-decoration: none; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px;" target="_blank">freegeoip.net</a><span style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px;">&nbsp;est une API REST publique permettant de g&eacute;olocaliser une adresse IP (ou un nom de domaine). L&#39;API est limit&eacute;e &agrave; 10000 appels par heures (ce qui semble suffisant), cependant, si vous souhaitez outrepasser cette limite, vous pouvez h&eacute;berger vous-m&ecirc;me ce service puisque freegeoip est open source. Vous trouverez les sources sur <a href="https://github.com/fiorix/freegeoip" target="_blank">GitHub</a>.</span></p>
+<p>
+	<span style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px;">S&#39;agissant d&#39;un webservice REST, l&#39;utilisation est tr&egrave;s simple, il vous suffti d&#39;appeller l&#39;URL suivante :</span></p>
+<pre>
+	freegeoip.net/{format}/{ip_ou_nom_de_domaine}
+</pre>
+<p>
+	Les formats support&eacute;s sont: JSON, CSV, et XML.</p>
+<p>
+	Voici un petit snippet permettant d&#39;appeler ce service en CURL:</p>
+<pre>
+    //test sur une IP de google
+    $api = &#39;http://freegeoip.net/json/173.194.67.94&#39;;
+    
+    $curl = curl_init();
+    curl_setopt($curl, CURLOPT_URL, $api);
+    curl_setopt($curl, CURLOPT_HEADER, false);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($curl, CURLOPT_BINARYTRANSFER, true);
+    curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 5);
+    $data = curl_exec($curl);
+    curl_close($curl);
+</pre>
+<p>
+	Voici la chaine JSON r&eacute;cup&eacute;r&eacute;e :</p>
+<pre>
+{"ip":"173.194.67.94","country_code":"US","country_name":"United States","region_code":"CA","region_name":"California","city":"Mountain View","zipcode":"94043","latitude":37.4192,"longitude":-122.0574,"metro_code":"807","areacode":"650"}
+</pre>
+<p>
+	Vous n&#39;avez plus qu&#39;&agrave; modifier le code ci-dessus pour l&#39;int&eacute;grer dans une fonction et voil&agrave;,&nbsp;le tour est jou&eacute; !&nbsp;En retournant "json_decode($data)" vous obtiendrez un objet avec les attributs suivants : ip, country_code, country_name, region_code, region_name, city, zipcode, latitude, longitude, metro_code, area_code.</p>
+<p>
+	Ce petit service va vous permettre, par exemple, de personnaliser&nbsp;votre site web en fonction de la localisation de vos visiteurs&nbsp;(langue par d&eacute;faut, indicatif t&eacute;l&eacute;phonique, affichage d&#39;un drapeau etc.).</p>

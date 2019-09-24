@@ -1,0 +1,69 @@
+---
+layout: post
+status: publish
+published: true
+title: 'Drupal : afficher les "blocks" d''une r&eacute;gion dans un template de node'
+author:
+  display_name: Séverin Bruhat
+  login: admin_sbr
+  email: sbruhat@gmail.com
+  url: http://severin-bruhat.com
+author_login: admin_sbr
+author_email: sbruhat@gmail.com
+author_url: http://severin-bruhat.com
+wordpress_id: 617
+wordpress_url: http://severin-bruhat.local/?p=617
+date: '2014-11-26 14:03:22 +0000'
+date_gmt: '2014-11-26 13:03:22 +0000'
+categories:
+- Tutoriels
+tags:
+- Drupal 7
+- block
+comments: []
+---
+<p>
+	Voici comment afficher les blocks positionn&eacute;s dans une r&eacute;gion, directement depuis une surcharge de template node plut&ocirc;t que dans le page.tpl.php.</p>
+<p><!--more--></p>
+<h2>
+	WTF ?<br />
+</h2>
+<p>
+	Ok c&#39;est pas tr&egrave;s clair, voici quelques explications. Drupal permet de d&eacute;finir des r&eacute;gions dans lesquelles sont affich&eacute;s des "blocks". Pour ce faire, il est n&eacute;cesssaire de d&eacute;clarer la r&eacute;gion au niveau fichier ".info" du th&egrave;me de la mani&egrave;re suivante :</p>
+<pre>
+<code>regions[col_droite] = Colonne de droite </code>
+</pre>
+<p>
+	Ensuite, au niveau du fichier page.tpl.php, il est possible d&#39;afficher le contenu de la r&eacute;gion :</p>
+<pre>
+<code>echo render($page['col_droite']);</code>
+</pre>
+<p>
+	Dans l&#39;administration des "blocks" propos&eacute;e par Drupal, vous pouvez ensuite choisir dans quelle r&eacute;gion afficher votre block :</p>
+<p>
+	<img alt="Capture Colonne de droite" src="http://severin-bruhat.local/wp-content/uploads/image/tutoriels/Capture%20d%E2%80%99e%CC%81cran%202014-11-25%20a%CC%80%2015_40_24.png" style="width: 838px; height: 71px;" /></p>
+<p>
+	Nous parlons ici du cas id&eacute;al, pr&eacute;vu d&egrave;s la conception du projet. Mais voil&agrave;, &ccedil;a ne se passe pas toujours comme &ccedil;a ! Imaginez que vous preniez un projet en cours, et que vous deviez rendre un contenu, qui apparait souvent en colonne de droite dans les fichiers de template, dynamique et administrable via les blocks de Drupal. En gros, vous devez rendre dynamique quelque chose de statique mais la r&eacute;gion n&#39;existe pas dans le page.tpl.php, pire que &ccedil;a, il n&#39;est pas possible d&#39;ajouter la r&eacute;gion sans modifier tous les templates. Il y a l&agrave; un gros probl&egrave;me de conception.... En effet, les r&eacute;gions sont exploitables uniquement dans le fichier page.tpl.php, impossible de faire un "render($page['col_droite'])" dans le template node.</p>
+<h2>
+	Mais alors comment faire ?<br />
+</h2>
+<ul>
+<li>
+		Pour commencer, ajoutez une r&eacute;gion ("col_droite") dans le fichier ".info" du th&egrave;me comme pr&eacute;cis&eacute; ci-dessus.
+	</li>
+<li>
+		Cr&eacute;ez ensuite votre block (via du code ou views) et positionnez-le dans la r&eacute;gion en question ("Colonne de droite"). Jusqu&#39;ici rien ne se passe au niveau du front-office, normal on n&#39;a encore pas demand&eacute; d&#39;afficher les bocks de la r&eacute;gion.
+	</li>
+<li>
+		Editez le template de node (ou cr&eacute;er une surcharge, ex : node--page2col.tpl.php [oui c'est sale, mais n'oubliez pas qu'on traite justement ce cas-l&agrave; !]) et ajoutez le code suivant o&ugrave; vous souhaitez afficher les blocks de la r&eacute;gion "Colonne de droite" :
+	</li>
+</ul>
+<pre>
+<code>print render(block_get_blocks_by_region(&#39;col_droite&#39;)); </code>
+</pre>
+<p>
+	Et voil&agrave;, votre page affiche maintenant le blocks de la colonne de droite alors que cette r&eacute;gion n&#39;est pas d&eacute;finie au niveau du fichier page.tpl.php de Drupal. Cette solution est &eacute;galement compatible avec la gestion de l&#39;affichage sp&eacute;cifique sur certaines pages :</p>
+<p>
+	<img alt="" src="http://severin-bruhat.local/wp-content/uploads/image/tutoriels/Capture%20d%E2%80%99e%CC%81cran%202014-11-26%20a%CC%80%2013_50_57.png" style="width: 474px; height: 223px;" /></p>
+<p>
+	J&#39;esp&egrave;re que ce petit tuto vous sera utile, le jour o&ugrave; vous serez confront&eacute; &agrave; cette situation.</p>

@@ -1,0 +1,333 @@
+---
+layout: post
+status: publish
+published: true
+title: BLEND Web Mix
+author:
+  display_name: Séverin Bruhat
+  login: admin_sbr
+  email: sbruhat@gmail.com
+  url: http://severin-bruhat.com
+author_login: admin_sbr
+author_email: sbruhat@gmail.com
+author_url: http://severin-bruhat.com
+wordpress_id: 89
+wordpress_url: http://severin-bruhat.local/?p=89
+date: '2013-10-11 19:50:43 +0100'
+date_gmt: '2013-10-11 18:50:43 +0100'
+categories:
+- Blog
+tags:
+- veille
+- Web
+- BlendWebMix
+- CSS
+- Grunt.js
+comments: []
+---
+<p>
+	Mardi et mercredi dernier, j&#39;ai eu l&#39;occasion d&#39;assister &agrave; certaines conf&eacute;rences du <a href="http://www.blendconference.com/">BLEND</a>. Le Blend Web Lix, comme son nom l&#39;indique, est un m&eacute;lange : un m&eacute;lange d&#39;ingr&eacute;dients du web. Les conf&eacute;rences &eacute;taient organis&eacute;es autour des th&eacute;matiques suivantes : business, design, marketing, recherche et technique.</p>
+<p>
+	Pour ma part, voici le programme que j&#39;ai suivi :</p>
+<table border="1" cellpadding="1" cellspacing="1" style="width: 600px;">
+<thead>
+<tr>
+<th scope="col">
+				jour 1
+			</th>
+<th scope="col">
+				jour 2
+			</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+				Introduction aux design patterns avec PHP
+			</td>
+<td>
+				Concevoir son API web
+			</td>
+</tr>
+<tr>
+<td>
+				Ciel, mes donn&eacute;es ne sont plus relationnelles
+			</td>
+<td>
+				Tour d&#39;horizon de Node.js
+			</td>
+</tr>
+<tr>
+<td>
+				More CSS secrets
+			</td>
+<td>
+				La technique au service de l&#39;entreprenariat
+			</td>
+</tr>
+<tr>
+<td>
+				Le futur des effets graphiques en CSS3 / Automatisez vos t&acirc;ches r&eacute;p&eacute;titives avec Grunt.js
+			</td>
+<td>
+				Pourquoi les workers queues sont-elles importantes pour dynamiser votre application web ?&nbsp;
+			</td>
+</tr>
+<tr>
+<td>
+				La web performance
+			</td>
+<td>
+				Dart, one language to rule them all
+			</td>
+</tr>
+</tbody>
+</table>
+<p>
+	<span style="line-height: 1.6em;">Je vais vous donner, dans ce post, un petit r&eacute;sum&eacute; de ce que j&#39;ai retenu&nbsp;de ces diff&eacute;rentes conf&eacute;rences. Cette article n&#39;a pas vocation &agrave; vous "instruire" sur un sujet, c&#39;est&nbsp;plus un retour d&#39;exp&eacute;rience&nbsp;, je vous invite donc &agrave; vous r&eacute;f&eacute;rer aux supports de pr&eacute;sentation pour plus de d&eacute;tails.</span><span style="line-height: 1.6em;">&nbsp;</span></p>
+<h2>
+	Introduction aux design patterns avec PHP<br />
+</h2>
+<p>
+	<strong><span style="font-size: 13px;">​Speakers :<a href="http://julien-pauli.developpez.com/">&nbsp;</a></span></strong><span style="font-size: 13px;"><a href="http://julien-pauli.developpez.com/">Julien Pauli</a> &amp; <a href="https://connect.sensiolabs.com/profile/hhamon">Hugo Hamon</a><br />
+	<strong>Support de pr&eacute;sentation :&nbsp;</strong></span><a href="https://speakerdeck.com/hhamon/introduction-to-design-patterns-with-php">https://speakerdeck.com/hhamon/introduction-to-design-patterns-with-php</a></p>
+<p>
+	Cette conf&eacute;rence &eacute;taient consacr&eacute;e aux diff&eacute;rents patrons de conception applicables dans le domaine professionnel. Tout le monde a appris durant ses &eacute;tudes ce qu&#39;&eacute;tait un patron de conception, mais qui applique r&eacute;ellement ces concepts au&nbsp;quotidien ? Si vous faites parti des d&eacute;veloppeurs qui, comme moi, travaillez avec des CMS ou framework au quotidien, vous manipulez probablement ces patterns sans m&ecirc;me&nbsp;vous en rendre compte. Mais une petite piq&ucirc;re de rappel ne fait de mal &agrave; personne, voci un petit r&eacute;sum&eacute; de ce qui a &eacute;t&eacute; dit.</p>
+<p>
+	Les <a href="http://fr.wikipedia.org/wiki/Patron_de_conception">design patterns</a>&nbsp;reposent sur le principe SOLID :</p>
+<ul>
+<li>
+		<strong>S</strong>ingle Responsability Principle :&nbsp;&laquo;&nbsp;A class should have one reason to change.&nbsp;&raquo;
+	</li>
+<li>
+		<strong>O</strong>pen Closed Principle :&nbsp;&laquo;&nbsp;Classes, methods should be open for extension, but closed for modifications.&nbsp;&raquo;
+	</li>
+<li>
+		<strong>L</strong>iskov Substitution Principle :&nbsp;&laquo;&nbsp;Subtypes must be substituable for their base types.&nbsp;&raquo;
+	</li>
+<li>
+		<strong>I</strong>nterface Segregation Principle :&nbsp;&laquo;&nbsp;Clients should not be forced to depend on methods that they do not use.&nbsp;&raquo;
+	</li>
+<li>
+		<strong>D</strong>ependency Inversion Principle :&nbsp;<span style="line-height: 1.6em;">&laquo;&nbsp;High level modules should not depend on low level modules. Both should depend on abstractions.&nbsp;&raquo;,&nbsp;</span><span style="line-height: 1.6em;">&laquo;&nbsp;Abstractions should not depend on details. Details should depend on abstractions.&nbsp;&raquo;</span>
+	</li>
+</ul>
+<p>
+	<span style="line-height: 1.6em;">​Voici un aper&ccedil;u des 5 design patterns &eacute;tudi&eacute;s :</span></p>
+<table border="1" cellpadding="1" cellspacing="1" style="width: 600px;">
+<thead>
+<tr>
+<th scope="col">
+				Design Pattern
+			</th>
+<th scope="col">
+				Int&eacute;r&ecirc;t
+			</th>
+<th scope="col">
+				Cas d&#39;utilisation
+			</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+				Composite
+			</td>
+<td>
+				Pr&eacute;senter un objet comme une collection d&#39;objets
+			</td>
+<td>
+				Arbre, XML, formulaire (symphony)
+			</td>
+</tr>
+<tr>
+<td>
+				Decorator
+			</td>
+<td>
+				Eviter trop de surcharge d&#39;h&eacute;ritage, ne pas "casser" l&#39;existant
+			</td>
+<td>
+				Ajout d&#39;un syst&egrave;me de log ou d&#39;un syst&egrave;me de cache
+			</td>
+</tr>
+<tr>
+<td>
+				Strategy
+			</td>
+<td>
+				Encapsuler des algorithmes de m&ecirc;me nature pour qu&#39;ils soient interchangeables&nbsp;
+			</td>
+<td>
+				Changer le syst&egrave;me de stockage des sessions, comparaison/tri de tableaux
+			</td>
+</tr>
+<tr>
+<td>
+				Factory
+			</td>
+<td>
+				Simplifier la cr&eacute;ation d&#39;objets : une seule classe permet d&#39;instancier des objets de diff&eacute;rentes classes ("keep instanciation process in one single place")
+			</td>
+<td>
+				G&eacute;rer des produits et des "packages" de produits de mani&egrave;re transparente
+			</td>
+</tr>
+<tr>
+<td>
+				Observer
+			</td>
+<td>
+				Permet de coupler les modules de mani&egrave;re &agrave; r&eacute;duire les d&eacute;pendances
+			</td>
+<td>
+				Gestion d&#39;&eacute;v&egrave;nements, une classe d&eacute;clenche des actions
+			</td>
+</tr>
+</tbody>
+</table>
+<h2>
+	Ciel, mes donn&eacute;es ne sont plus relationnelles<br />
+</h2>
+<p>
+	<strong style="font-size: 13px;">​Speaker :&nbsp;</strong><span style="font-size: 13px;"><a href="https://connect.sensiolabs.com/profile/xgorse">Xavier Gorse</a></span></p>
+<p>
+	Dans certains cas, le classique sch&eacute;ma de&nbsp;donn&eacute;es "relationnelles" ne permet pas de r&eacute;pondre aux besoins, notamment si la volum&eacute;trie est importante ou bien que la complexit&eacute; d&#39;un algorithme est &eacute;lev&eacute;e (domaine de la recherche par exemple). On peu alors mettre en place une architecture NoSQL (Not Only SQL) devant r&eacute;pondre &agrave;&nbsp;4 probl&eacute;matiques :</p>
+<ul>
+<li>
+		Donn&eacute;es non relationnelles
+	</li>
+<li>
+		Scalabilit&eacute;
+	</li>
+<li>
+		Absence de sch&eacute;ma (structure)
+	</li>
+<li>
+		Architecture distribu&eacute;e
+	</li>
+</ul>
+<p>
+	On distingue 4 grandes cat&eacute;gories d&#39;outils (la derni&egrave;re &eacute;tant surtout r&eacute;serv&eacute;e au domaine de la recherche) :</p>
+<h3>
+	Key / value<br />
+</h3>
+<p>
+	<u>Concept :</u> hashmap permettant de stocker les informations sous forme de paire.<br />
+	<span style="line-height: 1.6em;"><u>Cas d&#39;utilisation :</u> cache, session<br />
+	<u>Avantage :</u> simple</span><br />
+	<span style="line-height: 1.6em;"><u>Inconv&eacute;nient :</u> trop simple -> impossible d&#39;effectuer une requ&ecirc;te sur une partie de la valeur<br />
+	<u>Exemple d&#39;outil :</u> <a href="http://redis.io/">redis</a></span></p>
+<h3>
+	Document<br />
+</h3>
+<p>
+	<u style="font-size: 13px;">Concept :</u><span style="font-size: 13px;">&nbsp;</span><span style="font-size: 13px;">hashmap contenant une cl&eacute; et une collection de valeurs (JSON)</span><br />
+	<u style="line-height: 1.6em;">Avantage:</u><span style="line-height: 1.6em;">&nbsp;plus souple que le mod&egrave;le cl&eacute; / valeur</span><br />
+	<u style="line-height: 1.6em;">Inconv&eacute;nient :</u><span style="line-height: 1.6em;"> performance limit&eacute;e en cas de forte volum&eacute;trie</span><br />
+	<u style="line-height: 1.6em;">Exemple d&#39;outil :</u><span style="line-height: 1.6em;">&nbsp;<a href="http://www.mongodb.org/">mongoDB</a></span></p>
+<h3>
+	Graph<br />
+</h3>
+<p>
+	<u>Concept :</u> mod&eacute;lisation des connexions entre les donn&eacute;es ; manipulation de nodes, propri&eacute;t&eacute;s et relations<br />
+	<u>Avantage : </u>puissant et rapide<br />
+	<u>Inconv&eacute;nient : </u>non scalable&nbsp;<br />
+	<u>Exemple d&#39;outil :</u> <a href="http://www.neo4j.org/">Neo4j</a></p>
+<h3>
+	Column-oriented<br />
+</h3>
+<p>
+	<u style="font-size: 13px;">Concept :</u><span style="font-size: 13px;">&nbsp;les&nbsp;</span><span style="color: rgb(36, 36, 36); font-family: Arial, sans-serif; line-height: 18.46875px; text-align: justify;">donn&eacute;es sont repr&eacute;sent&eacute;es sous la forme de blocs de colonnes stock&eacute;s de mani&egrave;re tri&eacute;e. Ce syst&egrave;me est&nbsp;</span><span style="font-size: 13px;">con&ccedil;u pour g&eacute;rer des volum&eacute;tries importantes de donn&eacute;es</span><br />
+	<u style="line-height: 1.6em;">Avantage :</u><u style="line-height: 1.6em;">&nbsp;</u><span style="line-height: 1.6em;">tr&egrave;s scalable</span><br />
+	<u style="line-height: 1.6em;">Inconv&eacute;nient :&nbsp;</u><span style="line-height: 1.6em;">complexe</span><br />
+	<u style="line-height: 1.6em;">Exemple d&#39;outils :</u><span style="line-height: 1.6em;">&nbsp;</span><a href="http://cassandra.apache.org/" style="line-height: 1.6em;">cassandra</a><span style="line-height: 1.6em;">, </span><a href="http://research.google.com/archive/bigtable.html" style="line-height: 1.6em;">bigtable</a></p>
+<p>
+	La mod&eacute;lisation a un impact sur l&#39;applicatif, ainsi, l<span style="font-size: 13px;">e choix de l&#39;outil &agrave; mettre en place d&eacute;pend du projet. Pour faire simple : "il faut stocker les donn&eacute;es en fonction de la mani&egrave;re dont vous devez les requ&ecirc;ter" dixit Xavier Gorse.</span></p>
+<h2>
+	More CSS secrets<br />
+</h2>
+<p>
+	<strong style="font-size: 13px;">​Speaker&nbsp;: </strong>Lea Verou<br />
+	<strong>Support de pr&eacute;sentation :&nbsp;</strong><a href="http://lea.verou.me/more-css-secrets/#intro">http://lea.verou.me/more-css-secrets/#intro</a></p>
+<p>
+	Cette conf&eacute;rence &eacute;tait tr&egrave;s technique et int&eacute;resante. Le speech &eacute;tant en anglais, je n&#39;ai malheureusement pas eu le temps de prendre de&nbsp;notes. Je vous conseille de jeter un oeil &agrave; la pr&eacute;sentation qui est d&#39;une excellente qualit&eacute; (&agrave; l&#39;image du speech).</p>
+<h2>
+	Le&nbsp;futur des&nbsp;effets graphiques en CSS3<br />
+</h2>
+<p>
+	<strong>Speaker :&nbsp;</strong><a href="http://blog.iamvdo.me/">​Vincent De Oliveira</a><br />
+	<strong>Support de pr&eacute;sentation :&nbsp;</strong><a href="http://www.iamvdo.me/conf/2013/blend/#/">http://www.iamvdo.me/conf/2013/blend/</a></p>
+<p>
+	Suite &agrave; un petit probl&egrave;me de timing, j&#39;ai manqu&eacute; le d&eacute;but de la sc&eacute;ance. Vincent De Oliveira pr&eacute;sentait des fonctionnalit&eacute;s CSS encore &agrave; l&#39;&eacute;tat exp&eacute;rimental. Une pr&eacute;sentation tr&egrave;s sympa donnant envie de tester ces diff&eacute;rents effets.</p>
+<p>
+	Voici les diff&eacute;rents points abord&eacute;s :</p>
+<ul>
+<li>
+		fonctions d&#39;image
+	</li>
+<li>
+		masques
+	</li>
+<li>
+		exclusions et formes
+	</li>
+<li>
+		filtres
+	</li>
+</ul>
+<p>
+	Je vous conseil de jeter un oeil au support. L&#39;ensemble de ces effets sont foncionnels sous <a href="http://www.webkit.org">webkit</a>.</p>
+<h2>
+	Automatisez vos t&acirc;ches r&eacute;p&eacute;titives avec Grunt.js<br />
+</h2>
+<p>
+	<strong>Speaker : </strong>Corinne&nbsp;Schillinger&nbsp;<br />
+	<strong>Support de pr&eacute;sentation : </strong><a href="http://fr.slideshare.net/inseo/grunt-corinne-schillinger-26743692">http://fr.slideshare.net/inseo/grunt-corinne-schillinger-26743692</a><strong>&nbsp;</strong></p>
+<p>
+	Grunt est un outil permettant d&#39;automatiser les t&acirc;ches r&eacute;p&eacute;titives d&#39;un projet telles que : compacter et minifier les fichiers JS et CSS, compiler les sources sass ou less, ex&eacute;cuter des tests unitaires, et compresser les images. Il repose sur <a href="http://nodejs.org/">node.js</a> et <a href="https://npmjs.org/">npm</a>&nbsp;(Node Packaged Modules), il est donc n&eacute;cessaire de disposer de ces deux &eacute;l&eacute;ments pour l&#39;utiliser.</p>
+<p>
+	De mon point de vue cet outil est tr&egrave;s simple &agrave; manipuler et permet de gagner un temps pr&eacute;cieux et d&#39;am&eacute;liorer la qualit&eacute; de vos projets.&nbsp;</p>
+<p>
+	Je pense r&eacute;diger prochainement un article consacr&eacute; &agrave; cet outil.</p>
+<h2>
+	Web performace<br />
+</h2>
+<p>
+	<strong style="font-size: 13px;">Speakers :<a href="http://www.damln.com/">&nbsp;</a></strong><a href="http://www.damln.com/">Damian Le Nouaille</a>,<a href="http://userland.fr/">&nbsp;Goulven Champenois</a></p>
+<p>
+	Cette conf&eacute;rence f&ucirc;t pour moi, plus une piq&ucirc;re de rappel, qu&#39;un r&eacute;el apprentissage, mais&nbsp;un petit "bourage de cr&acirc;ne" de temps en temps ne fait&nbsp;pas de mal. Damian et Goulvien ont principalement&nbsp;parl&eacute; des &eacute;l&eacute;ments suivants:</p>
+<ul>
+<li>
+		minification / compression js et css
+	</li>
+<li>
+		minification des images
+	</li>
+<li>
+		sprite css
+	</li>
+<li>
+		chargement asynchorne (AJAX)
+	</li>
+<li>
+		webfonts
+	</li>
+<li>
+		cache busting
+	</li>
+<li>
+		CDN
+	</li>
+</ul>
+<p>
+	Cette conf&eacute;rence s&#39;orientait autour de&nbsp;deux axes: une pr&eacute;sentatrion th&eacute;orique et&nbsp;une pr&eacute;sentation plus concr&egrave;te bas&eacute;e sur une timeline pr&eacute;sentant les diff&eacute;rents axes d&#39;am&eacute;lioration et leurs r&eacute;sultats.&nbsp;</p>
+<h2>
+	<span style="line-height: 1.2em;">Conclusion</span><br />
+</h2>
+<p>
+	<span style="line-height: 1.6em;">Ce fut une exp&eacute;rience tr&egrave;s enrichissante</span><span style="line-height: 1.6em;">, tant d&#39;un point de vue professionnel qu&#39;humain. Un tel &eacute;v&egrave;nement permet de rencontrer un tas d&#39;acteurs du web intervenant dans des domaines diff&eacute;rents et compl&eacute;mentaires &agrave; la fois (d&eacute;veloppement, marketing, r&eacute;f&eacute;rencement, design, veille...).</span></p>
+<p>
+	<span style="line-height: 1.6em;">J&#39;ajouterai les supports manquant lorsque je les aurai&nbsp;r&eacute;cup&eacute;r&eacute;s.</span></p>
+<p>
+	<span style="line-height: 1.6em;">Et comme un peu de teasing ne fait de mal &agrave; personne, je vous annonce qu&#39;un deuxi&egrave;me billet d&eacute;taillant les conf&eacute;rences du deuxi&egrave;me&nbsp;jour est &agrave; venir ;)</span></p>

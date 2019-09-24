@@ -1,0 +1,79 @@
+---
+layout: post
+status: publish
+published: true
+title: 'Drupal 7 : charger un bloc en PHP'
+author:
+  display_name: Séverin Bruhat
+  login: admin_sbr
+  email: sbruhat@gmail.com
+  url: http://severin-bruhat.com
+author_login: admin_sbr
+author_email: sbruhat@gmail.com
+author_url: http://severin-bruhat.com
+wordpress_id: 164
+wordpress_url: http://severin-bruhat.local/?p=164
+date: '2013-11-01 08:30:13 +0000'
+date_gmt: '2013-11-01 07:30:13 +0000'
+categories:
+- Tutoriels
+tags:
+- Drupal 7
+- views
+- block
+comments:
+- id: 6
+  author: S&eacute;verin Bruhat
+  author_email: sbruhat@gmail.com
+  author_url: ''
+  date: '2013-12-03 23:27:27 +0000'
+  date_gmt: '2013-12-03 22:27:27 +0000'
+  content: "<p>\n\tHeureux d'avoir pu vous aider ;)\n</p>"
+- id: 350
+  author: St&eacute;phane Pruvost
+  author_email: stefan@h2o.wf
+  author_url: ''
+  date: '2017-06-03 16:19:35 +0100'
+  date_gmt: '2017-06-03 15:19:35 +0100'
+  content: "\r\n\tMerci, la m&eacute;thode \"module_invoke\" est vraiment la plus
+    simple je trouve.\r\n"
+---
+<p>
+	Voici comment charger un bloc directement depuis le code PHP (depuis un module ou le fichier page.tpl.php par exemple).</p>
+<ol>
+<li>
+		<strong>Afficher un bloc Drupal (natif, bloc de contenu par exemple)</strong>
+	</li>
+</ol>
+<pre>
+<code>$block = module_invoke(&#39;block&#39;, &#39;block_view&#39;, &#39;<em>ID_du_bloc</em>&#39;); 
+print render($block['content']);
+</code></pre>
+<p>
+	L&#39;ID_du_bloc est disponible <span style="font-size: 13px;">&nbsp;lorsque vous &eacute;ditez&nbsp;un bloc en backoffice</span>admin/structure/block/manage/block/<em>D_du_bloc</em>/configure</p>
+<ol start="2">
+<li>
+		<strong>Afficher un bloc Drupal cr&eacute;&eacute; avec Views</strong>
+	</li>
+</ol>
+<pre>
+<code>$block = module_invoke(&#39;views&#39;, &#39;block_view&#39;, &#39;<em>Nom_du_bloc</em>&#39;); 
+print render($block['content']);
+</code></pre>
+<p>
+	Le Nom_du_bloc (param&egrave;tre Delta) est disponible lorsque vous &eacute;ditez&nbsp;un bloc en backoffice :&nbsp;admin/structure/block/manage/views/<em>Nom_du_bloc</em>/configure</p>
+<ol start="3" style="font-size: 13px;">
+<li>
+		<strong>Afficher un bloc Drupal cr&eacute;&eacute; via un module custom</strong>
+	</li>
+</ol>
+<pre>
+<code>$block = module_invoke(&#39;module_name&#39;, &#39;block_view&#39;, &#39;block_delta&#39;); 
+print render($block['content']);
+</code></pre>
+<p>
+	<span style="font-size: 13px;">Module_name correspond au nom du module, block_delta est disponible lorsque vous &eacute;ditez&nbsp;un bloc en backoffice :&nbsp;admin/structure/block/manage/views/</span><em style="font-size: 13px;">block_delta</em><span style="font-size: 13px;">/configure</span></p>
+<p>
+	Vous trouverez plus d&#39;information <a href="https://drupal.org/node/26502">ici</a>.</p>
+<p>
+	&nbsp;</p>

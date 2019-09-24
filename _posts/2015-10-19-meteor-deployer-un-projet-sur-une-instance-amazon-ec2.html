@@ -1,0 +1,170 @@
+---
+layout: post
+status: publish
+published: true
+title: 'Meteor : d&eacute;ployer un projet sur une instance Amazon EC2'
+author:
+  display_name: Séverin Bruhat
+  login: admin_sbr
+  email: sbruhat@gmail.com
+  url: http://severin-bruhat.com
+author_login: admin_sbr
+author_email: sbruhat@gmail.com
+author_url: http://severin-bruhat.com
+wordpress_id: 835
+wordpress_url: http://severin-bruhat.local/?p=835
+date: '2015-10-19 16:48:23 +0100'
+date_gmt: '2015-10-19 15:48:23 +0100'
+categories:
+- Tutoriels
+tags:
+- meteorjs
+- awscloud
+comments: []
+---
+<p>
+	Je travaille actuellement sur une application en <a href="https://www.meteor.com/" target="_blank">Meteor</a>, n&#39;ayant pas de serveur node.js, j&#39;ai d&eacute;cid&eacute; de tester <a href="https://aws.amazon.com/fr/ec2/" target="_blank">Amazon EC2</a>. A la cr&eacute;ation d&#39;un compte AWS, on a le droit &agrave; une instance gratuite, peu de ressource mais suffisant pour mon projet dans un permier temps.</p>
+<p>
+	<!--more--></p>
+<h2>
+	Cr&eacute;er une instance EC2<br />
+</h2>
+<p>
+	Le processus est plut&ocirc;t simple, il vous suffit de cr&eacute;er un compte amazon, si vous n&#39;en avez pas, et de vous rendre ici : <a href="https://aws.amazon.com/fr/ec2/" target="_blank">https://aws.amazon.com/fr/ec2/</a> pour souscrire au service EC2. Ensuite choisissez le mod&egrave;le de VM qui vous int&eacute;resse, pour ma part, j&#39;ai choisi une Ubuntu (car elle est compatible avec mup (meteor up) pour le d&eacute;ploiement).</p>
+<p>
+	Le processus de cr&eacute;ation est simple, laissez vous guider. Bien que vous puissiez profiter d&#39;une instance gratuite, vous devrez fournir vos informations banquaires. En effet, l&#39;utilisation est gratuite, dans une certaine limite, si vous la d&eacute;passez, vous devrez payer (<a href="https://aws.amazon.com/fr/ec2/pricing/" target="_blank">https://aws.amazon.com/fr/ec2/pricing/</a>). Aussi, je vous conseille de mettre en place une alerte en cas de d&eacute;passement du seuil, pour ma part je recevrai une alerte d&egrave;s que la facture d&eacute;passera un euro, j&#39;improviserai apr&egrave;s <img alt="smiley" height="23" src="http://severin-bruhat.local/wp-content/plugins/ckeditor-for-wordpress/ckeditor/plugins/smiley/images/regular_smile.png" title="smiley" width="23" />.</p>
+<p>
+	Une fois votre instance cr&eacute;&eacute;e, vous obtiendrez les informations n&eacute;cessaires &agrave; la gestion dans votre dashboard EC2 :</p>
+<p style="text-align: center;">
+	<img alt="dashboard EC2 for my meteor app" class="aligncenter size-large wp-image-840" height="408" src="http://severin-bruhat.local/wp-content/uploads/2015/10/Capture-d&rsquo;écran-2015-10-19-à-15.58.54-1024x408.png" style="" title="" width="1024" /></p>
+<p>
+	Il vous faudra modifier les "Security groups" afin d&#39;acc&egrave;der &agrave; votre serveur en SSH ainsi que sur le port 80.</p>
+<h2>
+	D&eacute;ployer avec Meteor Up<br />
+</h2>
+<p>
+	Maintenant que vous disposez d&#39;un h&eacute;bergement pour votre projet, il va falloir le d&eacute;ployer. Votre instance, nouvellement cr&eacute;&eacute;e, n&#39;est pas pr&ecirc;te, il faut &agrave; pr&eacute;sent installer node.js, mongoDB ainsi qu&#39;un server web, mais pas de panique, <a href="https://github.com/arunoda/meteor-up" target="_blank">mup</a> se charge de tout pour vous ! Les &eacute;tapes d&eacute;crites ci-dessous sont inspir&eacute;es du screencast suivant : <a href="https://www.youtube.com/watch?v=11K_DSrhJzQ" target="_blank">https://www.youtube.com/watch?v=11K_DSrhJzQ</a></p>
+<h3>
+	Installation de mup<br />
+</h3>
+<pre>
+<code>npm install -g mup</code></pre>
+<h3>
+	Initialisation<br />
+</h3>
+<pre>
+<code>mup init</code></pre>
+<p>
+	Cette commande va cr&eacute;er deux fichiers &agrave; la racine de votre projet :</p>
+<ul>
+<li>
+		mup.json - fichier de configuration Meteor Up
+	</li>
+<li>
+		settings.json - fichier de configuration pour meteor (cf <a href="http://docs.meteor.com/#/full/meteor_settings" target="_blank">http://docs.meteor.com/#/full/meteor_settings</a>)
+	</li>
+</ul>
+<p>
+	Nous allons nous concentrer sur le premier fichier "mup.json" car c&#39;est lui qui contient les informations concernant l&#39;environnement cible.</p>
+<pre>
+<code>
+{
+  // Server authentication info
+  "servers": [
+    {
+      "host": "XX.XX.XX.XXX", <span style="color:#FF8C00;">//IP du serveur sur lequel d&eacute;ployer (Public IP)</span>
+      "username": "ubuntu", <span style="color:#FF8C00;">//nom d&#39;utilisateur pour la sessions ssh</span>
+      "pem": "AWS-EC2.pem" <span style="color:#FF8C00;">//chemin vers le certificat pour la connexion au serveur</span>
+    }
+  ],
+
+  // Install MongoDB in the server, does not destroy local MongoDB on future setup
+  "setupMongo": true,
+
+  // WARNING: Node.js is required! Only skip if you already have Node.js installed on server.
+  "setupNode": true,
+
+  // WARNING: If nodeVersion omitted will setup 0.10.36 by default. Do not use v, only version number.
+  "nodeVersion": "0.10.36",
+
+  // Install PhantomJS in the server
+  "setupPhantom": false, <span style="color:#FF8C00;">//d&eacute;sactiv&eacute; pour mon test</span>
+
+  // Show a progress bar during the upload of the bundle to the server. 
+  // Might cause an error in some rare cases if set to true, for instance in Shippable CI
+  "enableUploadProgressBar": true,
+
+  // Application name (No spaces)
+  "appName": "app-name", <span style="color:#FF8C00;">// nom de votre application</span> 
+
+  // Location of app (local directory)
+  "app": "/home/nitrous/code/my-project/app-folder", <span style="color:#FF8C00;">//chemin vers le r&eacute;pertoire de votre projet (celui contenant le dossier ".meteor")</span>
+
+  // Configure environment
+  "env": {
+    "ROOT_URL": "http://mondomaine.com" <span style="color:#FF8C00;">//URL de votre projet (Public DNS)</span>
+  },
+
+  // Meteor Up checks if the app comes online just after the deployment
+  // before mup checks that, it will wait for no. of seconds configured below
+  "deployCheckWaitTime": 15
+}
+</code></pre>
+<p>
+	Tout est pr&ecirc;t, vous pouvez maintenant lancer l&#39;installation du serveur gr&acirc;ce &agrave; la commande suivante :</p>
+<pre>
+<code>mup setup</code></pre>
+<p>
+	Cette commande va installer node.js, meteor et mongoDB sur votre instance EC2. Vous &ecirc;tes maintenant pr&ecirc;t &agrave; d&eacute;ployer votre projet meteor sur Amazon EC2 !</p>
+<h3>
+	D&eacute;ploiement<br />
+</h3>
+<p>
+	Une seule commande suffit :</p>
+<pre>
+<code>mup deploy</code></pre>
+<p>
+	Rendez vous sur l&#39;URL de votre instance EC2 et adminrez le r&eacute;sultat : votre application meteor est en ligne.</p>
+<p>
+	&nbsp;</p>
+<p>
+	&nbsp;</p>
+<pre style="white-space: pre; position: fixed; left: 100%; opacity: 0;">
+&ldquo; Checkout Kadira!
+  It&#39;s the best way to monitor performance of your app.
+  Visit: https://kadira.io/mup &rdquo;
+Building Started: /home/nitrous/code/std-generator-v2/app
+Started TaskList: Deploy app &#39;std-generator&#39; (linux)
+[52.17.141.218] - Uploading bundle
+[52.17.141.218] - Uploading bundle: SUCCESS
+[52.17.141.218] - Setting up Environment Variables
+[52.17.141.218] - Setting up Environment Variables: SUCCESS
+[52.17.141.218] - Invoking deployment process
+[52.17.141.218] - Invoking deployment process: SUCCESS
+➜  std-generator-v2 git:(dev) ✗ vim .gitignore</pre>
+<pre style="white-space: pre; position: fixed; left: 100%; opacity: 0;">
+&ldquo; Checkout Kadira!
+  It&#39;s the best way to monitor performance of your app.
+  Visit: https://kadira.io/mup &rdquo;
+Building Started: /home/nitrous/code/std-generator-v2/app
+Started TaskList: Deploy app &#39;std-generator&#39; (linux)
+[52.17.141.218] - Uploading bundle
+[52.17.141.218] - Uploading bundle: SUCCESS
+[52.17.141.218] - Setting up Environment Variables
+[52.17.141.218] - Setting up Environment Variables: SUCCESS
+[52.17.141.218] - Invoking deployment process
+[52.17.141.218] - Invoking deployment process: SUCCESS
+➜  std-generator-v2 git:(dev) ✗ vim .gitignore</pre>
+<pre style="white-space: pre; position: fixed; left: 100%; opacity: 0;">
+&ldquo; Checkout Kadira!
+  It&#39;s the best way to monitor performance of your app.
+  Visit: https://kadira.io/mup &rdquo;
+Building Started: /home/nitrous/code/std-generator-v2/app
+Started TaskList: Deploy app &#39;std-generator&#39; (linux)
+[52.17.141.218] - Uploading bundle
+[52.17.141.218] - Uploading bundle: SUCCESS
+[52.17.141.218] - Setting up Environment Variables
+[52.17.141.218] - Setting up Environment Variables: SUCCESS
+[52.17.141.218] - Invoking deployment process
+[52.17.141.218] - Invoking deployment process: SUCCESS
+➜  std-generator-v2 git:(dev) ✗ vim .gitignore</pre>

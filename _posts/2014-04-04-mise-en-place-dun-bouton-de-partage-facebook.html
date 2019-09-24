@@ -1,0 +1,84 @@
+---
+layout: post
+status: publish
+published: true
+title: Mise en place d'un bouton de partage facebook
+author:
+  display_name: Séverin Bruhat
+  login: admin_sbr
+  email: sbruhat@gmail.com
+  url: http://severin-bruhat.com
+author_login: admin_sbr
+author_email: sbruhat@gmail.com
+author_url: http://severin-bruhat.com
+wordpress_id: 411
+wordpress_url: http://severin-bruhat.local/?p=411
+date: '2014-04-04 12:41:22 +0100'
+date_gmt: '2014-04-04 11:41:22 +0100'
+categories:
+- Tutoriels
+tags:
+- facebook
+- opengraph
+- share
+comments: []
+---
+<h2>
+	Mise en place<br />
+</h2>
+<p>
+	Nous allons voir ici comment mettre en place ce type de bouton sur votre site :</p>
+<p>
+	<a href="http://severin-bruhat.local/wp-content/uploads/2014/04/like.png"><img alt="like" class="aligncenter size-full wp-image-412" height="25" src="http://severin-bruhat.local/wp-content/uploads/2014/04/like.png" width="127" /></a></p>
+<ol>
+<li>
+		Tout d&#39;abord, rendez vous sur le <a href="https://developers.facebook.com/docs/plugins/like-button/" target="_blank">g&eacute;n&eacute;rateur de boutons</a> mis en place par Facebook. Puis&nbsp;configurez&nbsp;votre (ou vos boutons), vous avez la possibilit&eacute; de g&eacute;n&eacute;rer le bouton "j&#39;aime" mais &eacute;galement le bouton "partager" avec diff&eacute;rentes options. Cliquez ensuite sur le bouton "Get Code". Nous allons travailler avec la version HTML5.&nbsp;
+	</li>
+<li>
+		Poisionner la premi&egrave;re partie du code dans votre fichier HTML apr&egrave;s la balise <body> :
+	</li>
+</ol>
+<pre>
+      <div id="fb-root"></div>
+      <script>(function(d, s, id) {
+&nbsp;       var js, fjs = d.getElementsByTagName(s)[0];
+&nbsp;       if (d.getElementById(id)) return;
+&nbsp;       js = d.createElement(s); js.id = id;
+&nbsp;       js.src = "//connect.facebook.net/fr_FR/all.js#xfbml=1";
+&nbsp;       fjs.parentNode.insertBefore(js, fjs);
+      }(document, &#39;script&#39;, &#39;facebook-jssdk&#39;));</script>
+</pre>
+<ol start="3">
+<li>
+		Positionnez ensuite la deuxi&egrave;me partie du code l&agrave; o&ugrave;&nbsp;vous souhaitez voir apparaitre le bouton sur votre page en v&eacute;rifiant l&#39;attribut "data-href"&nbsp;:
+	</li>
+</ol>
+<pre>
+      <div class="fb-like" data-href="<span style="color:#FF0000;">https://developers.facebook.com/docs/plugins/</span>" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div></pre>
+<p>
+	Et voil&agrave; vous avez maintenant une fonctionnalit&eacute; de partage Facebook sur votre site.</p>
+<h2>
+	Pour aller plus loin<br />
+</h2>
+<p>
+	Avec la manipulation ci-dessus, vous aurez un partage simple (pas d&#39;image, pas de description...). Si vous souhaitez apporter des informations suppl&eacute;mentaires, vous allez devoir utiliser <a href="http://ogp.me/" target="_blank">Open Graph</a>.&nbsp;<span style="line-height: 1.6em;">Rien de bien compliqu&eacute;, vous trouverez toutes les informations dans la documentation. Le principe est simple, il suffit d&#39;ajouter des balises meta entre les balise "<head>" et "</head>" de votre fichier HTML.</span></p>
+<p>
+	<a href="http://severin-bruhat.local/wp-content/uploads/2014/04/partager.png"><img alt="partager" class="aligncenter size-medium wp-image-413" height="78" src="http://severin-bruhat.local/wp-content/uploads/2014/04/partager-300x78.png" width="300" /></a></p>
+<p>
+	Voici un exemple de balise :</p>
+<pre>
+<meta property="og:title" content="Titre &agrave; afficher" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="http://urldusite.fr/" />
+<meta property="og:description" content="Description &agrave; afficher" />
+<meta property="og:image" content="http://urldusite.fr/images/mon-image.png" />
+</pre>
+<p>
+	<strong>Attention : og:type, og:image, og:url et og:title&nbsp;sont obligatoires. De plus, l&#39;image doit faire au minimum 200*200px, sinon c&#39;est une autre image de la page qui sera prise en compte.</strong></p>
+<p>
+	Facebook met &agrave; disposition un debugger &agrave; cet adresse :&nbsp;<a href="https://developers.facebook.com/tools/debug" target="_blank">https://developers.facebook.com/tools/debug</a>. Cet outil vous permettra notament de v&eacute;rifier que vos balises "og" soient correctement prises en compte.</p>
+<p>
+	Facebook g&egrave;re un cache, ainsi, si vous modifier ces balises "og", il n&#39;est pas certain que l&#39;effet soit visible instantan&eacute;ment. Vous pouvez vider ce cache en appelant votre URL avec la param&egrave;tre "fbrefresh=CAN_BE_ANYTHING" :</p>
+<pre>
+http://urldusite.fr/?fbrefresh=CAN_BE_ANYTHING
+</pre>
