@@ -80,13 +80,13 @@ sh $DIR/provision/version.sh > $DIR/version.txt</pre>
 <p>
 	Un user script est simplement un fichier javascript que vous pouvez ajouter &agrave; une extension dans votre navigateur et qui va vous permettre de modifier le comportement et l&rsquo;affichage de certaines pages. Pour ma part, j&rsquo;utilise <a href="https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=fr" target="_blank">Tampermonkey</a>. Installez-le et cr&eacute;ez un nouveau script:</p>
 <p>
-	<img alt="tampermonkey" class="aligncenter size-full wp-image-1396" height="121" src="http://severin-bruhat.local/wp-content/uploads/2017/09/tampermonkey.png" width="1743" /></p>
+	<img alt="tampermonkey" class="aligncenter size-full wp-image-1396" height="121" src="/blog-images/2017/09/tampermonkey.png" width="1743" /></p>
 <p>
 	Ajouter ce script:<br />
 	<script src="https://gist.github.com/severin-bruhat/ed0b9e2d6061c59c1b4a3562fb074ec9.js"></script></p>
 <p>
 	Maintenant que cette extension est activ&eacute;e, le script va, sur toutes les pages visit&eacute;es (tous les sites), chercher le fichier version.txt et l&rsquo;afficher proprement dans un bandeau color&eacute;:</p>
 <p dir="ltr">
-	<a href="http://severin-bruhat.local/wp-content/uploads/2017/09/version.png" rel="" style="" target="" title=""><img alt="version" class="size-full wp-image-1395 aligncenter" height="270" src="http://severin-bruhat.local/wp-content/uploads/2017/09/version.png" style="" title="" width="2752" /></a>Vous remarquerez que le script contient des conditions afin de changer la couleur de fond en fonction de l&#39;environnement (bas&eacute; sur le nom de domaine).</p>
+	<a href="/blog-imagesersion" class="size-full wp-image-1395 aligncenter" height="270" src="/blog-images/2017/09/version.png" /blog-imagesrquerez que le script /blog-imagesleur de fond en fonction de l&#39;environnement (bas&eacute; sur le nom de domaine).</p>
 <p>
 	Voil&agrave; c&rsquo;est termin&eacute;, je teste ce syst&egrave;me au boulot et le fais &eacute;voluer r&eacute;guli&egrave;rment, une chose int&eacute;ressante serait par exemple de restreindre l&#39;acc&egrave;s &agrave; ce fichier &agrave; certaines IP via une r&egrave;gle dans nginx.&nbsp;N&#39;h&eacute;sitez pas &agrave; me faire des retours afin de m&rsquo;aider &agrave; l&#39;am&eacute;liorer.</p>

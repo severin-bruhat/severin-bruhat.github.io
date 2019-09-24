@@ -41,7 +41,7 @@ comments: []
 <p>
 	Dans l&#39;administration des "blocks" propos&eacute;e par Drupal, vous pouvez ensuite choisir dans quelle r&eacute;gion afficher votre block :</p>
 <p>
-	<img alt="Capture Colonne de droite" src="http://severin-bruhat.local/wp-content/uploads/image/tutoriels/Capture%20d%E2%80%99e%CC%81cran%202014-11-25%20a%CC%80%2015_40_24.png" style="width: 838px; height: 71px;" /></p>
+	<img alt="Capture Colonne de droite" src="/blog-images/image/tutoriels/Capture%20d%E2%80%99e%CC%81cran%202014-11-25%20a%CC%80%2015_40_24.png" style="width: 838px; height: 71px;" /></p>
 <p>
 	Nous parlons ici du cas id&eacute;al, pr&eacute;vu d&egrave;s la conception du projet. Mais voil&agrave;, &ccedil;a ne se passe pas toujours comme &ccedil;a ! Imaginez que vous preniez un projet en cours, et que vous deviez rendre un contenu, qui apparait souvent en colonne de droite dans les fichiers de template, dynamique et administrable via les blocks de Drupal. En gros, vous devez rendre dynamique quelque chose de statique mais la r&eacute;gion n&#39;existe pas dans le page.tpl.php, pire que &ccedil;a, il n&#39;est pas possible d&#39;ajouter la r&eacute;gion sans modifier tous les templates. Il y a l&agrave; un gros probl&egrave;me de conception.... En effet, les r&eacute;gions sont exploitables uniquement dans le fichier page.tpl.php, impossible de faire un "render($page['col_droite'])" dans le template node.</p>
 <h2>
@@ -64,6 +64,6 @@ comments: []
 <p>
 	Et voil&agrave;, votre page affiche maintenant le blocks de la colonne de droite alors que cette r&eacute;gion n&#39;est pas d&eacute;finie au niveau du fichier page.tpl.php de Drupal. Cette solution est &eacute;galement compatible avec la gestion de l&#39;affichage sp&eacute;cifique sur certaines pages :</p>
 <p>
-	<img alt="" src="http://severin-bruhat.local/wp-content/uploads/image/tutoriels/Capture%20d%E2%80%99e%CC%81cran%202014-11-26%20a%CC%80%2013_50_57.png" style="width: 474px; height: 223px;" /></p>
+	<img alt="" src="/blog-images%80%2013_50_57.png" style="width: 474px; height: 223px;" /></p>
 <p>
 	J&#39;esp&egrave;re que ce petit tuto vous sera utile, le jour o&ugrave; vous serez confront&eacute; &agrave; cette situation.</p>

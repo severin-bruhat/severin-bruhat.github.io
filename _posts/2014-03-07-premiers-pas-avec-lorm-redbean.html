@@ -58,7 +58,7 @@ comments:
 <p>
 	Le principe de fonctionnement est le suivant :</p>
 <p>
-	<a href="http://severin-bruhat.local/wp-content/uploads/2014/02/Untitled.png" rel="" style="" target="" title=""><img alt="ORM" class="size-medium wp-image-319 aligncenter" height="273" src="http://severin-bruhat.local/wp-content/uploads/2014/02/Untitled-300x273.png" style="" title="" width="300" /></a></p>
+	<a href="/blog-images/2014/02/Untitled.png" rel="" style="" target="" title=""><img alt="ORM" class="size-medium wp-image-319 aligncenter" height="273" src="/blog-images/2014/02/Untitled-300x273.png" style="" title="" width="300" /></a></p>
 <p>
 	L&#39;ORM est capable de g&eacute;n&eacute;rer des objets (manipulables en PHP) &agrave; partir du sch&eacute;ma de la base de donn&eacute;es. Les objets ainsi cr&eacute;&eacute;s disposent d&#39;attributs (champs de la base) et de m&eacute;thodes (<a href="http://fr.wikipedia.org/wiki/CRUD">CRUD</a>). Ce type d&#39;outil permet&nbsp;<span style="line-height: 1.6em;">d&#39;interagir&nbsp;rapidement et facilement avec la base de donn&eacute;es. Redbean poss&egrave;de un gros avantage : il est capable de cr&eacute;er le sch&eacute;ma directement depuis le code PHP, nous aborderons cet aspect&nbsp;dans ce tutoriel.</span></p>
 <h2>
@@ -97,7 +97,7 @@ $idUser = R::store( $utilisateur )
 <p>
 	<span style="line-height: 1.6em;">Une fois le code pr&eacute;c&eacute;dent ex&eacute;cut&eacute;, consultez votre sch&eacute;ma de base de donn&eacute;es, et l&agrave;, surprise (ou pas, si vous avez suivi ^^) &nbsp;:</span></p>
 <p>
-	<a href="http://severin-bruhat.local/wp-content/uploads/2014/03/database.png"><img alt="database" class="aligncenter size-full wp-image-370" height="44" src="http://severin-bruhat.local/wp-content/uploads/2014/03/database.png" width="194" /></a></p>
+	<a href="/blog-imagesull wp-image-370" height="44" src="/blog-images/2014/03/database.png"/blog-images/blog-images
 <p>
 	Cr&eacute;ons maintenant une note &agrave; l&#39;aide du code suivant :</p>
 <pre>
@@ -130,7 +130,7 @@ R::store( $utilisateur );
 <p>
 	Voici ce que l&#39;on obtient au niveau de la table "note" :&nbsp;</p>
 <p>
-	<a href="http://severin-bruhat.local/wp-content/uploads/2014/03/note2.png"><img alt="note" class="aligncenter size-medium wp-image-373" height="32" src="http://severin-bruhat.local/wp-content/uploads/2014/03/note2-300x32.png" width="300" /></a></p>
+	<a href="/blog-imagesp-image-373" height="32" src="/blog-images/2014/03/note2-300x32./blog-images/blog-images
 <p>
 	On remarque qu&#39;un nouveau champ permettant de stocker l&#39;identifiant de l&#39;utilisateur est apparu dans la table (relation de type one-to-many). Le mot cl&eacute; "own" (<span style="font-size: 13px;">ownNoteList)</span> est obligatoire et permet d&#39;illustrer la notion de possession (relation). Vous trouverez plus d&#39;informations sur les relations dans la <a href="http://redbeanphp.com/relations" target="_blank">documentation officielle</a>.</p>
 <p>
