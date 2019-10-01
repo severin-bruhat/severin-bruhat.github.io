@@ -39,3 +39,22 @@ a img {
 sup, sub {
     line-height: 0;
 }
+
+#main {
+    padding: 30px;
+    margin:40px;
+}
+
+a.link-back {
+    text-decoration: none;
+    color: inherit;
+    outline: none;
+    transition: background-color .25s ease-out;
+    display: inline-block;
+    padding: 5px 2px;
+    border-bottom: 0.2em solid #ccc;
+}
+
+a.link-back:hover {
+	background-color: #ccc;
+}

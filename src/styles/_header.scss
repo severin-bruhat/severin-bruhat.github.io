@@ -120,3 +120,15 @@
       }
   }
 }
+
+#header-light {
+    background: $main;
+    padding: 10px 0;
+    text-align: center;
+    color: #FFF;
+    h1 {
+      line-height: 1.25;
+      color: #FFF;
+      padding-top: 0;
+    }
+}
