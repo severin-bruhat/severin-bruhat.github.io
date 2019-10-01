@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: blog
 status: publish
 published: true
 title: Ajouter des boutons de contr&ocirc;le &agrave; jcarousel
@@ -63,11 +63,11 @@ comments: []
 <p>
 	Pour les besoins de ce tutoriel, nous n&rsquo;allons pas customiser la vue. Enregistrer-l&agrave; et ajouter ce block nouvellement cr&eacute;&eacute; dans une r&eacute;gion de votre site (admin/structure/block).&nbsp;Normalement vous obtiendrez quelque chose comme ceci&nbsp;:</p>
 <p>
-	<a href="/blog-imagesium wp-image-99" height="76" src="/blog-images/2013/10/carousel-300x/blog-images/blog-images
+	<a href="/blog-images/2013/10/carousel.png"><img alt="carousel" class="alignnone size-medium wp-image-99" height="76" src="/blog-images/2013/10/carousel-300x76.png" width="300" /></a></p>
 <p>
 	Il est possible de modifier le nombre d&rsquo;items affich&eacute;s, de rajouter les num&eacute;ros pour naviguer d&rsquo;un slide &agrave; un autre via les settings du jCarouel disponible dans la gestion de la vue ;&nbsp;je ne vais pas m&rsquo;attarder sur ce point dans ce tutoriel :</p>
 <p>
-	<a href="/blog-imagesignnone size-medium wp-image-102" height="300" src="/blog-images/2013/10/blocStyleOpti/blog-images/blog-images
+	<a href="/blog-images/2013/10/blocStyleOptions.png"><img alt="blocStyleOptions" class="alignnone size-medium wp-image-102" height="300" src="/blog-images/2013/10/blocStyleOptions-224x300.png" width="224" /></a></p>
 <ol start="3" style="font-size: 13px;">
 <li>
 		<strong>Ajout des boutons play / stop</strong>
@@ -91,7 +91,7 @@ comments: []
 <p>
 	Pour r&eacute;cup&eacute;rer l&rsquo;instance de carousel, il faut connaitre sont identifiant, pour cela voici une m&eacute;thode simple&nbsp;: afficher le code source de votre page et rechercher la cl&eacute; &laquo;&nbsp;"carousels":&nbsp;&raquo; qui doit &ecirc;tre dans une cha&icirc;ne javascript commen&ccedil;ant par &laquo;&nbsp;jQuery.extend(Drupal.settings&raquo;. Cette cl&eacute; contient un tableau de carousel (un seul item dans notre cas) dont l&rsquo;identifiant et du style &laquo;&nbsp;jcarousel-dom-1&nbsp;&raquo;&nbsp;:</p>
 <p>
-	<a href="/blog-imageswp-image-101" height="118" src="/blog-images/2013/10/jquery-300x11/blog-images/blog-images
+	<a href="/blog-images/2013/10/jquery.png"><img alt="jquery" class="alignnone size-medium wp-image-101" height="118" src="/blog-images/2013/10/jquery-300x118.png" width="300" /></a></p>
 <p>
 	Une fois que vous avez&nbsp;cette identifiant, &eacute;ditez&nbsp;le fichier de template et&nbsp;positionnez&nbsp;vos contr&ocirc;les HTML o&ugrave; bon vous semble&nbsp;:</p>
 <blockquote>

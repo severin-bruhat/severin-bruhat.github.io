@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: blog
 status: publish
 published: true
 title: 'Meteor : d&eacute;ployer un projet sur une instance Amazon EC2'
@@ -7,12 +7,12 @@ author:
   display_name: Séverin Bruhat
   login: admin_sbr
   email: sbruhat@gmail.com
-  url: http://severin-bruhat.com
+  url: https://severin-bruhat.com
 author_login: admin_sbr
 author_email: sbruhat@gmail.com
-author_url: http://severin-bruhat.com
+author_url: https://severin-bruhat.com
 wordpress_id: 835
-wordpress_url: http://severin-bruhat.local/?p=835
+wordpress_url: http://severin-bruhat.com/?p=835
 date: '2015-10-19 16:48:23 +0100'
 date_gmt: '2015-10-19 15:48:23 +0100'
 categories:
@@ -32,11 +32,11 @@ comments: []
 <p>
 	Le processus est plut&ocirc;t simple, il vous suffit de cr&eacute;er un compte amazon, si vous n&#39;en avez pas, et de vous rendre ici : <a href="https://aws.amazon.com/fr/ec2/" target="_blank">https://aws.amazon.com/fr/ec2/</a> pour souscrire au service EC2. Ensuite choisissez le mod&egrave;le de VM qui vous int&eacute;resse, pour ma part, j&#39;ai choisi une Ubuntu (car elle est compatible avec mup (meteor up) pour le d&eacute;ploiement).</p>
 <p>
-	Le processus de cr&eacute;ation est simple, laissez vous guider. Bien que vous puissiez profiter d&#39;une instance gratuite, vous devrez fournir vos informations banquaires. En effet, l&#39;utilisation est gratuite, dans une certaine limite, si vous la d&eacute;passez, vous devrez payer (<a href="https://aws.amazon.com/fr/ec2/pricing/" target="_blank">https://aws.amazon.com/fr/ec2/pricing/</a>). Aussi, je vous conseille de mettre en place une alerte en cas de d&eacute;passement du seuil, pour ma part je recevrai une alerte d&egrave;s que la facture d&eacute;passera un euro, j&#39;improviserai apr&egrave;s <img alt="smiley" height="23" src="http://severin-bruhat.local/wp-content/plugins/ckeditor-for-wordpress/ckeditor/plugins/smiley/images/regular_smile.png" title="smiley" width="23" />.</p>
+	Le processus de cr&eacute;ation est simple, laissez vous guider. Bien que vous puissiez profiter d&#39;une instance gratuite, vous devrez fournir vos informations banquaires. En effet, l&#39;utilisation est gratuite, dans une certaine limite, si vous la d&eacute;passez, vous devrez payer (<a href="https://aws.amazon.com/fr/ec2/pricing/" target="_blank">https://aws.amazon.com/fr/ec2/pricing/</a>). Aussi, je vous conseille de mettre en place une alerte en cas de d&eacute;passement du seuil, pour ma part je recevrai une alerte d&egrave;s que la facture d&eacute;passera un euro, j&#39;improviserai apr&egrave;s <img alt="smiley" height="23" src="http://severin-bruhat.com/wp-content/plugins/ckeditor-for-wordpress/ckeditor/plugins/smiley/images/regular_smile.png" title="smiley" width="23" />.</p>
 <p>
 	Une fois votre instance cr&eacute;&eacute;e, vous obtiendrez les informations n&eacute;cessaires &agrave; la gestion dans votre dashboard EC2 :</p>
 <p style="text-align: center;">
-	<img alt="dashboard EC2 for my meteor app" class="aligncenter size-large wp-image-840" height="408" src="http://severin-bruhat.local/wp-content/uploads/2015/10/Capture-d&rsquo;écran-2015-10-19-à-15.58.54-1024x408.png" style="" title="" width="1024" /></p>
+	<img alt="dashboard EC2 for my meteor app" class="aligncenter size-large wp-image-840" height="408" src="http://severin-bruhat.com/wp-content/uploads/2015/10/Capture-d&rsquo;écran-2015-10-19-à-15.58.54-1024x408.png" style="" title="" width="1024" /></p>
 <p>
 	Il vous faudra modifier les "Security groups" afin d&#39;acc&egrave;der &agrave; votre serveur en SSH ainsi que sur le port 80.</p>
 <h2>
