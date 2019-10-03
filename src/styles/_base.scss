@@ -41,8 +41,14 @@ sup, sub {
 }
 
 #main {
-    padding: 30px;
-    margin:40px;
+    padding: 70px;
+    margin:60px;
+    h2{
+        font-size: 1.8rem;
+    }
+    h1 {
+        padding-top: 0;
+    }
 }
 
 a.link-back {
