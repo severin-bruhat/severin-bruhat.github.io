@@ -97,42 +97,36 @@ comments: []
 	<a href="/blog-images/2013/10/jquery.png"><img alt="jquery" class="alignnone size-medium wp-image-101" height="118" src="/blog-images/2013/10/jquery-300x118.png" width="300" /></a></p>
 <p>
 	Une fois que vous avez&nbsp;cette identifiant, &eacute;ditez&nbsp;le fichier de template et&nbsp;positionnez&nbsp;vos contr&ocirc;les HTML o&ugrave; bon vous semble&nbsp;:</p>
-<blockquote>
-<p>
-		<span style="font-size:12px;">
-<ul class="btn-play-pause">
-		<span style="line-height: 1.6em;">&nbsp; &nbsp; &nbsp; &nbsp;
-<li><a href="javascript:void(0);" class="play" id="btn_play"><span class="hidden"><?php echo t("play"); ?></span></a></li>
-<p></span><br />
-		<span style="line-height: 1.6em;">&nbsp; &nbsp; &nbsp; &nbsp;
-<li><a href="javascript:void(0);" class="pause" id="btn_pause"><span class="hidden"><?php echo t("stop"); ?></span></a></li>
-<p></span><br />
-		<span style="line-height: 1.6em;"></ul>
-<p></span></span>
-	</p>
-</blockquote>
+	<blockquote>
+			<p>
+					<span style="font-size:12px;">&lt;ul class="btn-play-pause"&gt;<br>
+					<span style="line-height: 1.6em;">&nbsp; &nbsp; &nbsp; &nbsp;&lt;li&gt;&lt;a href="javascript:void(0);" class="play" id="btn_play"&gt;&lt;span class="hidden"&gt;&lt;?php echo t("play"); ?&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;</span><br>
+					<span style="line-height: 1.6em;">&nbsp; &nbsp; &nbsp; &nbsp;&lt;li&gt;&lt;a href="javascript:void(0);" class="pause" id="btn_pause"&gt;&lt;span class="hidden"&gt;&lt;?php echo t("stop"); ?&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;</span><br>
+					<span style="line-height: 1.6em;">&lt;/ul&gt;</span></span>
+				</p>
+			</blockquote>
 <p>
 	Ajoutez&nbsp;ensuite le javascript suivant&nbsp;:</p>
-<blockquote>
-<p>
-		<span style="font-size:12px;"><script type="text/javascript"><br />
-		<span style="line-height: 1.6em;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; //ajout d&rsquo;une function de callback sur le carousel</span><br />
-		<span style="line-height: 1.6em;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; jQuery.extend(Drupal.settings.jcarousel.carousels["jcarousel-dom-1"], {</span><br />
-		<span style="line-height: 1.6em;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;"initCallback": jcarousel_initCallback</span><br />
-		<span style="line-height: 1.6em;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;});</span></span>
-	</p>
-<p>
-		<span style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; //function de callback permettant d&rsquo;affecter les actions aux liens play / stop<br />
-		<span style="line-height: 1.6em;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; function jcarousel_initCallback(carousel) {</span><br />
-		<span style="line-height: 1.6em;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;jQuery(&#39;#btn_pause&#39;).bind(&#39;click&#39;, function() {</span><br />
-		<span style="line-height: 1.6em;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;carousel.stopAuto();</span><br />
-		<span style="line-height: 1.6em;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;});</span><br />
-		<span style="line-height: 1.6em;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;jQuery(&#39;#btn_play&#39;).bind(&#39;click&#39;, function() {</span><br />
-		<span style="line-height: 1.6em;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;carousel.startAuto();</span><br />
-		<span style="line-height: 1.6em;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;});</span><br />
-		<span style="line-height: 1.6em;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</span><br />
-		<span style="line-height: 1.6em;"></script></span></span>
-	</p>
-</blockquote>
+	<blockquote>
+			<p>
+					<span style="font-size:12px;">&lt;script type="text/javascript"&gt;<br>
+					<span style="line-height: 1.6em;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; //ajout d’une function de callback sur le carousel</span><br>
+					<span style="line-height: 1.6em;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; jQuery.extend(Drupal.settings.jcarousel.carousels[«&nbsp;jcarousel-dom-1&nbsp;»], {</span><br>
+					<span style="line-height: 1.6em;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;"initCallback": jcarousel_initCallback</span><br>
+					<span style="line-height: 1.6em;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;});</span></span>
+				</p>
+			<p>
+					<span style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; //function de callback permettant d’affecter les actions aux liens play / stop<br>
+					<span style="line-height: 1.6em;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; function jcarousel_initCallback(carousel) {</span><br>
+					<span style="line-height: 1.6em;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;jQuery('#btn_pause').bind('click', function() {</span><br>
+					<span style="line-height: 1.6em;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;carousel.stopAuto();</span><br>
+					<span style="line-height: 1.6em;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;});</span><br>
+					<span style="line-height: 1.6em;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;jQuery('#btn_play').bind('click', function() {</span><br>
+					<span style="line-height: 1.6em;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;carousel.startAuto();</span><br>
+					<span style="line-height: 1.6em;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;});</span><br>
+					<span style="line-height: 1.6em;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</span><br>
+					<span style="line-height: 1.6em;">&lt;/script&gt;</span></span>
+				</p>
+			</blockquote>
 <p>
 	Sauvegardez le fichier, videz les caches, rechargez la page&hellip; enjoy&nbsp;;)</p>
