@@ -41,8 +41,8 @@ sup, sub {
 }
 
 #main {
-    padding: 100px;
-    margin:60px;
+    padding: 20px 100px;
+    margin: 20px 60px;
     h2{
         font-size: 1.8rem;
     }
@@ -61,6 +61,20 @@ sup, sub {
         background-color: #f5f5f5;
         border: 1px solid #ccc;
         border-radius: 3px;
+        overflow: auto;
+    }
+
+    blockquote{
+        font-style: normal;
+        font-size: 16px;
+        margin-left: 32px;
+        font-family: Consolas, "Times New Roman", Verdana;
+        border-left: 4px solid #CCC;
+        padding-left: 8px;
+    }
+
+    strong {
+        font-weight: bold;
     }
 }
 
