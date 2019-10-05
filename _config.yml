@@ -17,3 +17,6 @@ google-analytics:
   id: ""
 
 exclude: ['package.json', 'src' , 'node_modules']
+
+plugins:
+  - jekyll-redirect-from
