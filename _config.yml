@@ -14,7 +14,7 @@ linkedin_username:  sbruhat
 
 # Google-analytics
 google-analytics:
-  id: ""
+  id: "UA-44645559-1"
 
 exclude: ['package.json', 'src' , 'node_modules']
 
