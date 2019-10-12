@@ -43,6 +43,10 @@ sup, sub {
 #main {
     padding: 20px 100px;
     margin: 20px 60px;
+    @media only screen and (min-width: $cutMobile) {
+        padding: 0;
+        margin: 10px 30px;
+    }
     h2{
         font-size: 1.8rem;
     }
