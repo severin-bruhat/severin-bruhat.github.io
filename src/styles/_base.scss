@@ -43,7 +43,6 @@ sup, sub {
 #main {
     padding: 20px 100px;
     margin: 20px 60px;
-    color: green;
     img {
         width: 100%;
         height: auto;
@@ -51,7 +50,6 @@ sup, sub {
     @media only screen and (max-width: $cut) {
         padding: 0;
         margin: 10px 30px;
-        color: red;
     }
     h2{
         font-size: 1.8rem;
