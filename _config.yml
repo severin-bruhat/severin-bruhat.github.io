@@ -1,22 +1,20 @@
 # Site settings
-title: Séverin Bruhat - Principal Backend Developer
-description: I am a Principal Backend Developer working @ Signal, living in Edinburgh
-# baseurl: "/particle" # the subpath of your site, e.g. /blog
-# url: "localhost:3000" # the base hostname & protocol for your site e.g. http://willianjusten.com.br
+title: Séverin Bruhat - Engineering Manager
+description: I am a Engineering Manager working @ xDesign, living in Edinburgh
 
 # User settings
 username: Séverin Bruhat
-user_title: Principal Backend Developer
+user_title: Engineering Manager
 email: sbruhat@gmail.com
 twitter_username: severin_bruhat
-github_username:  severin-bruhat
-linkedin_username:  sbruhat
+github_username: severin-bruhat
+linkedin_username: sbruhat
 
 # Google-analytics
 google-analytics:
-  id: "UA-44645559-1"
+  id: 'UA-44645559-1'
 
-exclude: ['package.json', 'src' , 'node_modules']
+exclude: ['package.json', 'src', 'node_modules']
 
 plugins:
   - jekyll-redirect-from
