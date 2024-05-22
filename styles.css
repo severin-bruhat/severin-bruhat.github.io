@@ -15,6 +15,10 @@ body {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+header.container {
+  margin-top: 20px;
+}
+
 h1 {
   text-align: center;
   margin-bottom: 5px;
@@ -46,9 +50,9 @@ p {
 }
 
 .link-list li {
-  display: block;  /* Change from inline-block to block for vertical stacking */
-  margin: 5px auto;  /* Adjust margins for spacing */
-  padding: 10px 20px;
+  display: block; /* Ensure block display for entire area */
+  margin: 5px auto;
+  padding: 10px 20px; /* Adjust padding for desired spacing */
   border: 1px solid #ddd;
   border-radius: 5px;
   cursor: pointer;  /* Add cursor pointer for button-like behavior */
@@ -56,10 +60,13 @@ p {
 }
 
 .link-list li a {
-  color: #333;
+  color: inherit; /* Inherit color from parent */
   text-decoration: none;
   font-size: 14px;
-  font-weight: bold; /* Add bold text for button emphasis */
+  font-weight: bold; /* Add bold text for button emphasis */  
+  display: block;    /* Uncomment for anchor-specific styles */
+  width: 100%;   /* Uncomment for anchor-specific styles */
+  height: 100%;  /* Uncomment for anchor-specific styles */
 }
 
 .link-list li a:hover {
