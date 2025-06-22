@@ -24,7 +24,7 @@ h1 {
   margin-bottom: 5px;
 }
 
-p, footer a {
+p, footer a, .medium-cta a {
   text-align: center;
   font-size: 1em;
   color: #888;
@@ -75,6 +75,61 @@ p, footer a {
   color: #000;
 }
 
+
+/* --- Styles for Medium Articles List --- */
+
+#articles-list ul {
+  list-style: none; /* Remove default bullet points */
+  padding: 0;        /* Remove default padding */
+  margin: 1.5rem 0;  /* Add some vertical margin, adjust as needed */
+}
+
+#articles-list li {
+  position: relative; /* Needed for absolute positioning of the icon */
+  padding: 0.5rem 0 0.5rem 2rem; /* Add padding for text and space for the icon */
+  margin-bottom: 0.5rem; /* Space between list items */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Subtle separator */
+  transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+
+#articles-list li:last-child {
+  border-bottom: none; /* No border for the last item */
+}
+
+/* Hover effect for list items */
+#articles-list li:hover {
+  background-color: rgba(0, 0, 0, 0.03); /* Light background on hover */
+}
+
+/* Font Awesome Icon for Bullet Points */
+/* Font Awesome Icon for Bullet Points (Updated for Pen icon & B&W) */
+#articles-list li::before {
+  font-family: 'Font Awesome 6 Free'; /* Make sure this matches your Font Awesome import */
+  font-weight: 900; /* Font Awesome Solid icons (like fa-pen-to-square) use 900 */
+  content: '\f044'; /* Unicode for fa-pen-to-square */
+  position: absolute;
+  left: 0.5rem; /* Adjust position to align the icon */
+  top: 0.6rem; /* Adjust vertical alignment */
+  color: #333; /* Dark grey for a "black" look, or #000 for pure black */
+  font-size: 1.2rem; /* Size of the icon */
+}
+
+/* Style the article links */
+#articles-list li a {
+  text-decoration: none; /* Remove underline */
+  color: #333; /* Darker text color */
+  font-size: 1.1rem; /* Slightly larger font size for readability */
+  font-weight: 500; /* Medium font weight */
+  display: block; /* Make the entire list item clickable area */
+  line-height: 1.5; /* Good line height for readability */
+}
+
+#articles-list li a:hover {
+  color: #007bff; /* Change link color on hover, match your brand's link color */
+}
+
+
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .container {
@@ -92,5 +147,12 @@ p, footer a {
 
   .link-list li {
     margin: 5px auto;
+  }
+
+  #articles-list li {
+    padding-left: 1.5rem; /* Less padding on smaller screens */
+  }
+  #articles-list li::before {
+      left: 0.2rem;
   }
 }
