@@ -25,25 +25,19 @@
     </script>
 </head>
 <body>
-    <header>
-        <h1><a href="/">Severin Bruhat</a></h1>
-        <p>Software Engineering Manager</p>
-        <nav>
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/medium.html">Medium Articles</a></li>
-                </ul>
-        </nav>
-    </header>
+    <header class="container">
+        <img src="images/profile-picture.jpg" alt="Severin Bruhat" class="profile-pic">
+        <h1>Séverin Bruhat</h1>
+        <p>Read my latest articles and insights.</p>
+      </header>
 
-    <main>
+    <main class="container">
         <section id="medium-articles-section">
-            <h2>Latest Articles on Medium</h2>
             <div id="articles-list">
                 <p>Loading articles...</p>
                 </div>
             <p class="medium-cta">
-                <a href="https://medium.com/@severinbruhat" target="_blank" rel="noopener noreferrer">
+                <a href="https://medium.com/@severin_bruhat" target="_blank" rel="noopener noreferrer">
                     Visit my Medium profile for more articles &rarr;
                 </a>
             </p>
@@ -86,7 +80,7 @@
                                 day: 'numeric'
                             });
 
-                            li.innerHTML = `<h3>${a.outerHTML}</h3><p class="article-date">Published: ${formattedDate}</p>`;
+                            li.innerHTML = `${a.outerHTML}`;
                             ul.appendChild(li);
                         });
                         articlesListDiv.appendChild(ul);
