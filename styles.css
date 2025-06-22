@@ -24,12 +24,13 @@ h1 {
   margin-bottom: 5px;
 }
 
-p {
+p, footer a {
   text-align: center;
   font-size: 1em;
   color: #888;
   margin-bottom: 15px;
 }
+
 
 /* Profile Picture Styles */
 .profile-pic {

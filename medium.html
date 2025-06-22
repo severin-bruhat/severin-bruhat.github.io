@@ -46,7 +46,7 @@
         </main>
 
     <footer>
-        <p>&copy; 2025 Severin Bruhat. All rights reserved.</p>
+        <p><a href="./index.html">About me</a> - <a href="./medium.html">Latest blogs</a></p>
     </footer>
 
     <script>
@@ -70,15 +70,8 @@
                             const a = document.createElement('a');
                             a.href = article.link;
                             a.textContent = article.title;
-                            a.target = '_blank'; // Open in new tab
-                            a.rel = 'noopener noreferrer'; // Security and performance best practice
-
-                            const date = new Date(article.pubDate);
-                            const formattedDate = date.toLocaleDateString('en-US', {
-                                year: 'numeric',
-                                month: 'long',
-                                day: 'numeric'
-                            });
+                            a.target = '_blank'; 
+                            a.rel = 'noopener noreferrer'; 
 
                             li.innerHTML = `${a.outerHTML}`;
                             ul.appendChild(li);
