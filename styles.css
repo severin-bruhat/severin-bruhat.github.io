@@ -24,7 +24,7 @@ h1 {
   margin-bottom: 5px;
 }
 
-p, footer a, .medium-cta a {
+p, footer a, .medium-cta a, .gumroad-cta a {
   text-align: center;
   font-size: 1em;
   color: #888;
@@ -126,6 +126,58 @@ p, footer a, .medium-cta a {
 
 #articles-list li a:hover {
   color: #007bff; /* Change link color on hover, match your brand's link color */
+}
+
+/* --- Styles for Gumroad Products List --- */
+
+/* Resetting the list and using same spacing as Medium list */
+#products-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0;
+}
+
+#products-list li {
+  position: relative;
+  padding: 0.5rem 0 0.5rem 2rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+#products-list li:last-child {
+  border-bottom: none;
+}
+
+#products-list li:hover {
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+#products-list li a {
+  text-decoration: none;
+  color: #333;
+  font-size: 1.1rem;
+  font-weight: 500;
+  display: block;
+  line-height: 1.5;
+}
+
+#products-list li a:hover {
+  color: #007bff;
+}
+
+/* --- The New Icons --- */
+
+/* Icon for PAID Products (fa-bag-shopping) */
+#products-list li::before {
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  content: '\f019'; /* Unicode for fa-download */
+  position: absolute;
+  left: 0.5rem;
+  top: 0.6rem;
+  color: #333;
+  font-size: 1.2rem;
 }
 
 
